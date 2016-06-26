@@ -1,0 +1,118 @@
+' This is for the perverted fatty in Thimble Town.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
+call @randommessagesystem ' Calling the system here.
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Random Message System
+'---------
+
+#org @randommessagesystem ' We are picking a random number here. What ever number is picked is the message to display.
+random 0x05
+compare 0x800D 0x0
+if 0x1 goto @messageprep1
+compare 0x800D 0x1
+if 0x1 goto @messageprep1
+compare 0x800D 0x2
+if 0x1 goto @messageprep2
+compare 0x800D 0x3
+if 0x1 goto @messageprep3
+compare 0x800D 0x4
+if 0x1 goto @messageprep3
+goto @messageprep3 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Random Message System End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @messageprep1
+lock
+faceplayer
+msgbox @message1 0x6
+applymovement 0x4 @faceright
+waitmovement 0x0
+return
+
+'---------
+' Message 2
+'---------
+
+#org @messageprep2
+lock
+faceplayer
+msgbox @message2 0x6
+applymovement 0x4 @faceright
+waitmovement 0x0
+return
+
+'---------
+' Message 3
+'---------
+
+#org @messageprep3
+msgbox @message3 0x6
+return
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @message1
+= Um, I'm just, um...\nGreat weather yes?
+
+#org @message2
+= LEAVE ME ALONE!\pGet the heck out of here\nNOW!
+
+#org @message3
+= Oh yeah, you're so beautiful...
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Movements
+'---------
+
+#org @faceright
+#raw 0x7 ' Face Right (Faster)
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+'-----------
+' Script End
+'-----------

@@ -1,0 +1,83 @@
+' This is for the little boy in the grass in Thimble Town.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
+lock
+faceplayer
+call @randommessagesystem ' Calling the system here.
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Random Message System
+'---------
+
+#org @randommessagesystem ' We are picking a random number here. What ever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @messageprep1
+compare 0x800D 0x1
+if 0x1 goto @messageprep2
+goto @messageprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Random Message System End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @messageprep1
+msgbox @message1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @messageprep2
+msgbox @message2 0x6
+return
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @message1
+= Me and my little sister love\njumping over the ledges.\pMommy doesn't like it though...\nBut I don't care! HAHAHA!
+
+#org @message2
+= I love playing in the grass.\pIt's long so sometimes I sneeze\nhahaha.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

@@ -1,0 +1,19 @@
+' Set's healing place to home, in case if all your pokemon faint. 
+' Set this level script to type 03, On entering map/not on menu close.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+#org @main
+compare 0x5001 0x3 ' Checks completed narration.
+if 0x1 call @healingplace
+end
+
+#org @healingplace
+sethealingplace 0x1
+return
+
+'-----------
+' Script End
+'-----------

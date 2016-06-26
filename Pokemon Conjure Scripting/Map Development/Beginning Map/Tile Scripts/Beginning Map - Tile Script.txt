@@ -1,0 +1,101 @@
+' This is the script for the two tilescripts at the begining of the game. When this is compiled XSE actually gives you the offsets for @tilescriptleft and @tilescriptright.
+' Then add the offsets to each script tile in Advance Map.
+' Left for left, right for right, and the script does the rest of the work.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Tilescript Left Function
+'---------
+
+#org @tilescriptleft
+setvar 0x4001 0x0 ' I am setting a temporary variable here to choose which movement I want.
+goto @mainfunction
+
+'---------
+' Tilescript Left Function End
+'---------
+
+'---------
+' Tilescript Right Function
+'---------
+
+#org @tilescriptright
+setvar 0x4001 0x1 ' I am setting a temporary variable here to choose which movement I want.
+goto @mainfunction
+
+'---------
+' Tilescript Right Function End
+'---------
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction
+lockall
+textcolor 0x0
+msgbox @comehere 0x6
+compare 0x4001 0x0
+if 0x1 call @leftmovement
+compare 0x4001 0x1
+if 0x1 call @rightmovement
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Movement Functions
+'---------
+
+#org @leftmovement
+applymovement MOVE_PLAYER @leftmovementmove
+waitmovement 0x0
+return
+
+#org @rightmovement
+applymovement MOVE_PLAYER @rightmovementmove
+waitmovement 0x0
+return
+
+'---------
+' Movement Functions End
+'---------
+
+
+'---------
+' Strings
+'---------
+#org @comehere
+= ???: Where are you going?\nCome here I have something to say\nto you [player].
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Movements
+'-----------
+#org @leftmovementmove
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0xFE 'End of Movements
+
+#org @rightmovementmove
+#raw 0x10 'Step Down (Normal)
+#raw 0x3  'Face Right (Normal)
+#raw 0xFE 'End of Movements
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

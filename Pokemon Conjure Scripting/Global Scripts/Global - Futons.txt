@@ -1,0 +1,34 @@
+'In both my ROM hack and this one, I decided to go with the idea of Futons rather then entire beds. When one has 4 + people in a tiny house, beds become very ugly.
+'You add this script to a small dresser and it tells the player about the futons.
+'---------
+' Script Start
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @futons
+msgbox @futonmessage 0x6
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @futonmessage
+= You can see in the drawer some\nfutons.\pThey look comfy!
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

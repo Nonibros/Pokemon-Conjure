@@ -1,0 +1,90 @@
+'Script for Aide walking around.
+'He gives potions after you get a pokemon from Oak.
+'Complete: 8:11 PM 6/17/2016
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @main
+lock
+faceplayer
+checkflag 0xA00 ' check if the NPC has given potions.
+if 0x1 goto @regularmessage ' If we have given potions, go to our normal message.
+checkflag 0xC00 ' Check if we have finished with oak.
+if 0x0 goto @regularmessage ' If we HAVEN'T gotten a pokemon from Oak yet, go to our normal message.
+msgbox @thisshouldhelp 0x6 ' Plays a message telling player a message before giving potions.
+textcolor 0x2 ' Sets text to black.
+checkitemroom 0xD 0x1 ' Checks free space.
+compare LASTRESULT 0x0
+if 0x1 goto @bagfull ' If there is none, tell the player the bag is full.
+bufferitem 0x1 0xD ' To [buffer2] Add the item Potion.
+fanfare 0x101
+preparemsg @receiveditem ' Received the item Message.
+waitmsg
+waitfanfare
+additem 0xD 0x3 ' Add 3 Potions
+msgbox @putawaypotions 0x6 ' Plays a message telling the player they have put away their balls.
+setflag 0xA00 ' Sets flag so that the NPC will not give anymore balls.
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Message Functions
+'---------
+
+#org @regularmessage
+msgbox @hardproblems 0x6 ' Displayer the Hard Problems message.
+release
+end
+
+'---------------
+#org @bagfull
+textcolor 0x2 ' Sets text to black.
+msgbox @bagisfull 0x6 ' If the players bag is full, this will display.
+release
+end
+
+
+
+'---------
+' Message Functions End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @hardproblems
+= I walk around a lot to think of\ndifficult problems to solve.\pSince I'm working with quantum\nmechanics, I constantly use\lequations such as the\lCallan-Symanzik equation...
+
+#org @bagisfull
+= The Bag can't hold any more\nitems.
+
+#org @thisshouldhelp
+= I hope these can help you out.
+
+#org @receiveditem
+= Obtained the [buffer2]!
+
+#org @putawaypotions
+= [player] put the Potions away\nin the Bags's Items Pocket.
+
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

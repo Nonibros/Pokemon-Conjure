@@ -1,0 +1,33 @@
+'The sign in front of the Verne house.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @vernesign
+msgbox @vernesignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @vernesignmessage
+= Verne Household
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

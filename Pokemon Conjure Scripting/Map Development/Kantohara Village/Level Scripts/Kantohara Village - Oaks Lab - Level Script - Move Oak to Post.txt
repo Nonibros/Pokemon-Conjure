@@ -1,0 +1,46 @@
+' This script moves oak when you enter the lab after talking with him.
+' Set this level script to type 02, Validates values...
+' In Advance Map, set "Flag:" to "5001" and set "Value:" to "0005"
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @main
+lockall
+applymovement 0x4 @moveoak ' Move oak Up
+waitmovement 0x0
+movesprite2 0x4 0x6 0x3 ' Move oak to his normal spot. Permanent.
+spritebehave 0x4 0x8 ' Makes him face down.
+playsong2 0x0
+fadedefault ' This will fadeout Oaks little chime and play the regular lab music.
+setvar 0x5001 0x6 ' Set's us up for the next event.
+releaseall
+end
+
+'-----------
+' Movements
+'-----------
+#org @moveoak
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x1E 'Step Up (Fast) Once oak is off screen, move him quickly to his post.
+#raw 0x1E 'Step Up (Fast)
+#raw 0x4  'Face Down (Faster) Face oak down fast.
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+'-----------
+' Script End
+'-----------

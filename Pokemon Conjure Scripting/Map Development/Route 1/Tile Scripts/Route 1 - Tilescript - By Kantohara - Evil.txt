@@ -1,0 +1,61 @@
+' This scripts stops you from entering route 1 on the evil side.
+' Place this on a tile script covering one space above the closes space to Kantohara.
+' In Advance Map, set "Var number:" to "5007" and set "Var value:" to "0002".
+' I designed the script so when the player steps on it while it is active, there is a check to see if you have a Pokemon. If you do, it will set itself to deactivate.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @outskirtsscript
+lockall
+checkflag 0xC00 ' Checks if we have obtained a pokemon/pokedex from Prof. Oak.
+if 0x1 goto @free ' If so, release the player and set the tilescript to deactivate.
+textcolor 0x2 ' Sets text to black.
+msgbox @leavingsosoon 0x4 ' Display a message
+closeonkeypress
+applymovement MOVE_PLAYER @stepdown ' Move player up.
+waitmovement 0x0
+releaseall
+end
+
+#org @free
+setvar 0x5007 0x3
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @leavingsosoon
+= You need to see Oak now.
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Movements
+'-----------
+
+#org @stepdown
+#raw 0x10 'Step Down (Normal)
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

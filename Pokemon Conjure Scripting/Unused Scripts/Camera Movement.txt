@@ -1,0 +1,129 @@
+' This is the first side plot, where a play fights a minion?
+' This is a tile script.
+' This moves the camera when variable 0x5003 is set to 0x0.
+' This script sets 0x5001 to 0x1, making this script never repeat.
+' Complete: 6:49 PM 6/17/2016
+'-----------
+' Script Start
+'-----------
+
+
+#dynamic 0xOFFSET
+
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction ' This is a new main function. It's easier to read when you split functions off into two, good and bad here, with one main one.
+lockall
+setvar 0x5003 0x1 ' I moved these up here for readibility.
+playsong 0x112 0x0 ' Play Dark theme.
+checkflag 0x230 ' Check our side.
+if 0x1 goto @badfunction
+goto @goodfunction
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Secondary Functions End
+'---------
+
+#org @goodfunction ' The good side messages and movement.
+msgbox @whatgoingonoverthere 0x6 ' Message.
+call @startingcamera ' Easier to edit the camera function.
+msgbox @helookssuspicious 0x6 ' Message.
+goto @endingcamera ' Easier to edit the camera function.
+end
+
+'---------
+
+#org @badfunction ' The bad side messages and movement.
+msgbox @ihaveafeeling 0x6 ' Message.
+call @startingcamera ' Easier to edit the camera function.
+msgbox @ibettercheckhim 0x6 ' Message.
+goto @endingcamera ' Easier to edit the camera function.
+end
+
+'---------
+
+#org @startingcamera ' So this moves the camera to the (zombie?).
+special 0x113 ' A special that locks everything for the camera.
+applymovement 0x7F @move
+waitmovement 0x0
+return ' Returns to our caller.
+
+'---------
+
+#org @endingcamera ' So this moves the camera back to the player.
+applymovement 0x7F @move2
+waitmovement 0x0
+special 0x114 ' A special that releases everything for the camera.
+fadesong 0x12C
+releaseall
+end
+
+'---------
+' Secondary Functions End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @whatgoingonoverthere
+= \v\h01\: What's happening over\nthere?
+
+#org @helookssuspicious
+= He looks suspicious, I should\nprobably check him out.
+
+#org @ihaveafeeling
+= \v\h01\: ...\p...\pI have a strange feeling that\nsomething's wrong.
+
+#org @ibettercheckhim
+= I better check him out.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Movements
+'-----------
+
+#org @move
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0xFE 'End of Movements
+
+#org @move2
+#raw 0x9 'Step Up (Very Slow)
+#raw 0x9 'Step Up (Very Slow)
+#raw 0x9 'Step Up (Very Slow)
+#raw 0x9 'Step Up (Very Slow)
+#raw 0x9 'Step Up (Very Slow)
+#raw 0x9 'Step Up (Very Slow)
+#raw 0x9 'Step Up (Very Slow)
+#raw 0x9 'Step Up (Very Slow)
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

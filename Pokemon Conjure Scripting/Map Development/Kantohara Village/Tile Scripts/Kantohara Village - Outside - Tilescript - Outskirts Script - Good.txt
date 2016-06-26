@@ -1,0 +1,61 @@
+' This scripts stops you from leaving Pallet Town until you get a Pokemon.
+' Place this on a tile script covering the exit.
+' In Advance Map, set "Var number:" to "5005" and set "Var value:" to "0001".
+' I designed the script so when the player steps on it while it is active, there is a check to see if you have a Pokemon. If you do, it will set itself to deactivate.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @outskirtsscript
+lockall
+checkflag 0xC00 ' Checks if we have obtained a pokemon/pokedex from Prof. Oak.
+if 0x1 goto @free ' If so, release the player and set the tilescript to deactivate.
+textcolor 0x2 ' Sets text to black.
+msgbox @talkwithoak 0x4 ' Display a message
+closeonkeypress
+applymovement MOVE_PLAYER @stepdown ' Move player down.
+waitmovement 0x0
+releaseall
+end
+
+#org @free
+setvar 0x5005 0x2
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @talkwithoak
+= \v\h01: I should probably go\ntalk to Prof. Oak. before I go.
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Movements
+'-----------
+
+#org @stepdown
+#raw 0x10 'Step Down (Normal)
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

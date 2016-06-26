@@ -1,0 +1,33 @@
+'The sign for the bookcases in house 1.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @house1sign
+msgbox @house1signmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @house1signmessage
+= It looks like a catalog of\nextremely philosophical books\lcontaining material on philosophy\lfor all walks of life...
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

@@ -1,0 +1,144 @@
+'This is used to give the player a selected Pokemon.
+'Variable 0x4003 controls which Pokemon to give, as shown below.
+'0xZZZ checks if we have given a pokemon. Replace all ZZZ with a free flag number.
+'---------
+' Script Start
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @givepokemonmain
+lock
+faceplayer
+'This part is added if you want the NPC to tell the player they have no room.
+checkflag 0xZZZ
+if 0x1 goto @afterpokemon ' If we have given a pokemon, say have fun or whatever.
+countpokemon ' Checks to see if we have 6 pokemon.
+compare 0x800D 0x6
+if 0x1 goto @needroom ' If the inventory is full, tell the player they need room.
+msgbox @youllneedapokemon 0x6
+setvar 0x4003 0x18B ' Set's variable 0x4003 to Bagon. If you wanted, you could reuse this script exactily as is, for another pokemon, simply by changing this number.
+'A NOTE: You need to use the INDEX number of the pokemon, NOT the national dex number. The first 251 pokemon have the same index number as their national number, but after 251, you need to look at the INDEX number.
+'I had run into a problem where I was giving out 0x173 = 371, which is the national dex number of bagon. HOWEVER, Bagons INDEX number is 395 = 0x18B. The pokemon with the INDEX number of 371 is Loudred, whose national dex number is 294.
+'You can check the index number of a pokemon in Pokemon Game Editor.
+call @showpic ' Show a picture of our pokemon.
+msgbox @pokemon1message 0x6 ' Display a message telling the player what the pokemon is.
+hidepokepic ' Hide the picture.
+msgbox @hereyougo 0x6
+'setflag 0x828 ' Opens pokemon menu, IF NEEDED.
+setflag 0xZZZ ' Sets the fact that we have received a pokemon.
+givepokemon 0x4003 0x5 0x0 0x0 0x0 0x0 ' Give a level 5  Bagon.
+bufferpokemon 0x0 0x4003 ' To [buffer1] give the value of our variable.
+preparemsg @receivedpoke ' you received X!
+waitmsg
+fanfare 0x13E
+waitfanfare
+msgbox @nicknamemessage 0x5 ' Do you want to nickname the pokemon?
+compare LASTRESULT 0x1
+if 0x1 call @nicknamepoke
+goto @ending ' Ends the script.
+
+#org @showpic
+showpokepic 0x4003 0xA 0x3 ' Shows Picture of Bagon.
+textcolor 0x0
+return
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' No Room Messages
+'---------
+
+#org @needroom
+msgbox @noroommessage 0x6
+release
+end
+
+'---------
+' No Room Messages End
+'---------
+
+
+'---------
+' After Pokemon Message
+'---------
+
+#org @afterpokemon
+msgbox @havefun 0x6
+release
+end
+
+'---------
+' After Pokemon Message End
+'---------
+
+'---------
+' Nickname
+'---------
+
+#org @nicknamepoke ' Counts the final pokemon, and sets that to the one to nickname.
+countpokemon
+subvar LASTRESULT 0x1
+copyvar 0x8004 LASTRESULT
+fadescreen 0x1
+special 0x9E
+waitstate
+return
+
+'---------
+' Nickname End
+'---------
+
+'---------
+' Closing
+'---------
+
+#org @ending ' Relock then say goodbye.
+lock
+faceplayer
+msgbox @goodjourney 0x6
+release
+end
+
+'---------
+' Closing End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @noroommessage
+= You have no space.
+
+#org @goodjourney
+= Please treat [buffer1] well, and\nhave fun together!
+
+#org @havefun
+= Have fun. Bye.
+
+#org @pokemon1message
+= This Pokémon is called Bagon.\nIt's a tough Pok\h1bmon to raise,\lbut it's definitely worth it.
+
+#org @hereyougo
+= Here you go, [player].
+
+#org @receivedpoke
+= [player] received the [buffer1]\nfrom the NPC!
+
+#org @nicknamemessage
+= Do you want to give a nickname to\nthis [buffer1]?
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

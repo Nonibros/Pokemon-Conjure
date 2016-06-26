@@ -1,0 +1,35 @@
+' This is for the little boy in house 2 in Thimble Town.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction
+msgbox @message1 0x6
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @message1
+= The child looks very engrossed in\nhis show.\lHe doesn't even notice you.\pNow THAT'S dedication.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

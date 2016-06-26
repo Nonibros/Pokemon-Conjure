@@ -1,0 +1,60 @@
+' This shows the narration at the beginning of the game.
+' Set this level script to type 02, Validates values...
+' In Advance Map, set "Flag:" to "5001" and set "Value:" to "0002"
+'Complete: 11:55 AM 6/24/2016
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @checkgoodorevil
+lockall
+setvar 0x5001 0x3
+checkflag 0x230 ' This will check our side.
+if 0x1 goto @narrationevil ' If we are evil, we will display the evil intro.
+goto @narrationgood ' If we are good, we will display the good intro.
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Message Functions
+'---------
+
+#org @narrationevil
+msgbox @narrationevilmessage 0x6 ' Display Evil Intro.
+releaseall
+end
+
+#org @narrationgood
+msgbox @narrationgoodmessage 0x6 ' Display Evil Intro.
+releaseall
+end
+
+'---------
+' Message Functions End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @narrationgoodmessage
+= It's been 8 years since that\nfateful day at the lake.\pAfter letting down my friend, he\nsoon after left town while I\lmoved to Kantohara Village.\pI'm now 18, and I am an official\nlab assistant of Prof. Oak.\pWorking at the lab has been a\ngreat experience!\pWell, time to go!
+
+#org @narrationevilmessage
+= It's been 8 years since that\nfateful day at the lake.\pAfter agreeing with my friend, he\nleft town to prepare while I\lmoved to Kantohara Village.\pI'm now 18, and I am an official\nlab assistant of Prof. Oak.\pI needed to learn more about\nthese monsters if I would defeat\lthem.\pFor some reason, I have a feeling\nthat my friend will be here\lsoon...
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

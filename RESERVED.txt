@@ -1,0 +1,151 @@
+FKA Reserved Flags and Variables.txt
+
+
+This is a file displaying what variables have already been used, and what can be used.
+As you can see, we have a few already.
+When blocks are assigned to people working on the project, they will also get flag assignments and variable assignments.
+Refer to EXAMPLE.txt for a concreted example.
+
+Block areas:
+0x7F8000 - 0x7FFFFF is where ASM code is kept.
+If the project needs more then this, either Nonibros or Hajima will find a new space for it.
+
+0x1200000 - 0x123FFFF is for general scripts.
+[Nonibros], the scripting coordinator will give out a block to people working on the project.
+
+0x1240000 - 0x1247FFF is for the flag setting script.
+IF YOU ARE NOT NONIBROS DO NOT TOUCH THIS AREA.
+Instead, if you are working on the project, and a specific flag or variable needs to be set so someone doesn't show up at the beginning of the game, let Nonibros know.
+
+0x1248000 - 0x126FFFF is for level scripts.
+[Nonibros] will give out a block to people working on the project.
+
+0x1270000 - 0x1300000 is a secondary area for general scripts.
+[Nonibros], the scripting coordinator will give out a block to people working on the project.
+
+0x1500000 - 0x17FFFFF is for Map Insertions.
+The map coordinator will give out a block to people working on the project.
+
+0x1800000 - 0x1AFFFFF is for Overworld/Tile Insertions.
+The Tile insertion coordinator will give out a block to people working on the project.
+
+Blocks will be given out to people working on a project, in groups of 0x8000.
+If someone needs more then their assigned block, they can ask their project cooridinator for a new block.
+
+Using this system, people working on the project will not run into each others work, and possibly break the game.
+
+People will be assigned specific maps to work on at set times.
+NO two people should be working on the same map at the same time.
+Using this system again, prevents conflicts.
+
+
+
+
+
+Now for the reserved section.
+
+
+Special offsets:
+0x11FFFA0 is a special offset.
+We use this for anything NOT programmed yet, so that when there are beta testers, they can say "Dude, the blah on map blah told me to tell you that it doesn't work."
+This is used as a sort of correction system, so that if errors in the game are found, we can fix them.
+0x11FFF50 is a special offset.
+It is used for the global futon script.
+This script is used on dressers in peoples homes to give them a place to sleep.
+0x11FFEE0 is a special offset.
+It is used for the global newspaper script.
+Just says how the news is terrible, but this can be changed to a new pointer for extened new if we so wish.
+
+
+
+Flag blocks:
+0x230 - Reserved for good or bad choice. NEVER CHANGE THIS.
+0x900 - 0x9FF - Reserved for removing/showing people.
+0xA00 - 0xAFF - Reserved for giving items.
+0xC00 - 0xCFF - Reserved for special event flags.
+
+Reserved Flags:
+0x230 - Reserved for good or bad choice. NEVER CHANGE THIS.
+0x900 - Reserved for removing ???/Kol at the very first map.
+0x901 - Reserved for removing Oak at Pallet Town.
+0x902 - Reserved for showing Oak at Lab.
+0x903 - Reserved for removing Oak at Pallet Town. Evil Version.
+0x904 - Reserved for showing Kol at Route 1.
+0xC00 - Reserved after Oak gives Pokedex.
+0xA00 - Reserved for walking Aide. Gives potions after getting Pokedex from oak.
+0xA01 - Reserved for Pokeball on Route 1.
+0xA02 - Reserved for Town Map in Kantohara
+
+
+
+0xXXXX 0xY - Means that when 0xXXXX is set to 0xY this will activate the specified event. Look below for examples.
+
+Reserved Variables:
+0x5000 - Reserved for tilescripts that always play:
+0x5000 0x0 - Reserved for scripts that should ALWAYS play, like a specific tilescript. Should ALWAYS be Zero. Can be used for any script that will always play.
+
+0x5001 - Reserved for global major events:
+0x5001 0x0 - Reserved for playing the script at the beginning of the game. 0 to activate. It should never be set to 0 again so it never activates again.
+0x5001 0x1 - Reserved for the tilescripts at the beginning of the game. 1 to activate. After talking with Kol, it will be set to 0x2. It should never be set to 1 again so the tilescripts never activate again.
+0x5001 0x2 - Reserved for narration at the players house. 2 is to activate. After the narration, it will be set to 0x3. It should never be set to 2 again so the narration never activates again.
+0x5001 0x3 - Reserved for the downstairs blocking script at the players house. 3 is to activate. After the script, it will be set to 0x4. It should never be set to 3 again so the script never activates again.
+0x5001 0x4 - Null. Don't use.
+0x5001 0x5 - Reserved for Lab script after professor oak brings the player there.
+0x5001 0x6 - NOT USED YET!
+
+0x5002 - Reserved for global minor events:
+0x5002 0x0 - NOT USED YET!
+
+0x5003 - Reserved for global something events:
+0x5003 0x0 - NOT USED YET!
+
+0x5004 - Reserved for good major events:
+0x5004 0x0 - This is a very special reservation. When this = 0, NO good scripts will run. None at all. When we choose our side, this will stay 0 if we choose the bad, and become 1 if we choose the good.
+0x5004 0x1 - NOT USED YET!
+
+0x5005 - Reserved for good minor events:
+0x5005 0x0 - This is a very special reservation. When this = 0, NO good scripts will run. None at all. When we choose our side, this will stay 0 if we choose the bad, and become 1 if we choose the good.
+0x5005 0x1 - This is for the tile script on the outskirts of town.
+0x5005 0x2 - NOT USED YET!
+
+0x5006 - Reserved for good something events:
+0x5006 0x0 - This is a very special reservation. When this = 0, NO good scripts will run. None at all. When we choose our side, this will stay 0 if we choose the bad, and become 1 if we choose the good.
+0x5006 0x1 - NOT USED YET!
+
+0x5007 - Reserved for evil major events:
+0x5007 0x0 - This is a very special reservation. When this = 0, NO good scripts will run. None at all. When we choose our side, this will stay 0 if we choose the good, and become 1 if we choose the bad.
+0x5007 0x1 - Used to activate Kol script on route 1.
+0x5007 0x2 - Used for tilescripts on route 1 and the outskirts of town.
+0x5007 0x3 - NOT USED YET!
+
+0x5008 - Reserved for evil minor events:
+0x5008 0x0 - This is a very special reservation. When this = 0, NO good scripts will run. None at all. When we choose our side, this will stay 0 if we choose the good, and become 1 if we choose the bad.
+0x5008 0x1 - NOT USED YET!
+
+0x5009 - Reserved for evil something events:
+0x5009 0x0 - This is a very special reservation. When this = 0, NO good scripts will run. None at all. When we choose our side, this will stay 0 if we choose the good, and become 1 if we choose the bad.
+0x5009 0x1 - NOT USED YET!
+
+This is a script for the very first map. Only Nonibros or someone very trusted can use this.
+It sets all necessary flags to 1. Useful for hiding NPCs, like professor oak in his lab, at the very beginning of the game.
+Script:
+
+' As soon as we start the game, this activates.
+' This is used to set certain people IDs that shouldn't show up at the beginning of the game. Example is professor Oak in his lab.
+' Set this level script to type 04, Validates values...
+' In Advance Map, set "Flag:" to "5001" and set "Value:" to "0000"
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+#org @setinitialflags
+setflag 0x902 ' Oaks lab Person ID.
+setflag 0x903 ' Oak Evil Person ID.
+setflag 0x904 ' Kol Route 1 Person ID.
+end
+
+'-----------
+' Script End
+'-----------

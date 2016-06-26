@@ -1,0 +1,33 @@
+'The sign for the village.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @villagesign
+msgbox @villagesignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @villagesignmessage
+= Welcome to Kantohara Village!\pMotto:\n"The Town of Beginnings."
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

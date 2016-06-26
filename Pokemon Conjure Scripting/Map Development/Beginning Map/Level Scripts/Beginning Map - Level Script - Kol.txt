@@ -1,0 +1,52 @@
+' As soon as we start the game, this activates.
+' Set this level script to type 02, Validates values...
+' In Advance Map, set "Flag:" to "5001" and set "Value:" to "0000"
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction
+lockall
+textcolor 0x0
+msgbox @yourelate 0x6 '"???: You're late.\p[player]: Sorry..."
+applymovement MOVE_PLAYER @movement
+waitmovement 0x0
+setvar 0x5001 0x1 ' Activates Tilescripts to keep us in place.
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+#org @yourelate
+= ???: You're late.\p[player]: Sorry, my Mom was bugging\nme.\p???: At least you have one.\p...\pAnyways, come here.
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Movements
+'-----------
+#org @movement
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0xFE 'End of Movements
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

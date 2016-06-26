@@ -1,0 +1,291 @@
+' This is for Prof. Oak. in Pallet Town.
+' This checks what position the player is in, and moves accordingly.
+' Depending on the side, he will either take you to the lab, or tell you where your friend is.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Check Side Function
+'---------
+
+#org @checkfunction
+checkflag 0x230
+If 0x0 goto @getplayerposition ' If we are good, we will run the rest of the script.
+lock ' If not just play a message.
+faceplayer
+msgbox @friendiswaiting 0x6 ' Oak tells the evil player that his friend is waiting at Sanohara.
+release ' Release the player.
+end
+
+'---------
+' Check Side Function End
+'---------
+
+'---------
+' Get Current Position Function
+'---------
+
+#org @getplayerposition
+getplayerpos 0x4000 0x4001 ' 0x4000 for x, 0x4001 for y.
+compare 0x4000 0x13 ' If x = this, it means the middle of the NPC, which is either up or down.
+If 0x1 goto @upordown
+compare 0x4000 0x12 ' If x = this, it means the left of the NPC.
+If 0x1 goto @setvarleft
+compare 0x4000 0x14 ' If x = this, it means the right of the NPC.
+If 0x1 goto @setvarright
+msgbox @problemalert 0x3 ' A message if there is somehow an issue.
+end
+
+#org @upordown
+compare 0x4001 0x9 ' If y = this, it means the player is hacking, as the NPC on this map is covered at the top.
+If 0x1 goto @setvarup
+compare 0x4001 0xB ' If y = this, it means the bottom of the NPC.
+If 0x1 goto @setvardown
+msgbox @problemalert 0x3 ' A message if there is somehow an issue.
+end
+
+'---------
+' Get Current Position Function End
+'---------
+
+'---------
+' Set Position Variable
+'---------
+
+#org @setvarleft ' Sets a variable for our main function.
+setvar 0x4002 0x0
+goto @mainfunction
+
+#org @setvardown ' Sets a variable for our main function.
+setvar 0x4002 0x1
+goto @mainfunction
+
+
+#org @setvarright ' Sets a variable for our main function.
+setvar 0x4002 0x2
+goto @mainfunction
+
+
+#org @setvarup ' Sets a variable for our main function.
+setvar 0x4002 0x3
+goto @mainfunction
+
+
+'---------
+' Set Position Variable End
+'---------
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction
+lock
+faceplayer
+playsong 0x12E 0x0
+msgbox @greetings 0x6
+release ' Release the player so we can relock everything for the movements.
+lockall
+goto @movementcaller
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Movement Caller End
+'---------
+
+#org @movementcaller
+compare 0x4002 0x0
+if 0x1 call @movementleftpos
+compare 0x4002 0x1
+if 0x1 call @movementdownpos
+compare 0x4002 0x2
+if 0x1 call @movementrightpos
+compare 0x4002 0x3
+if 0x1 goto @goddamnhacker
+goto @allposmovements ' Go to a function for the remaining movements.
+end
+
+'---------
+' Movement Caller End
+'---------
+
+
+
+'---------
+' Movements Called
+'---------
+
+#org @movementleftpos
+applymovement 0x1 @faceleft ' Face Oak to the left.
+waitmovement 0x0
+applymovement 0xFF @walkdownonce ' Move player down.
+waitmovement 0x0
+applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+waitmovement 0x0
+applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+applymovement 0xFF @walkuponce ' Move Player up once.
+waitmovement 0x0
+return ' Return to our caller.
+
+#org @movementdownpos
+applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+applymovement 0xFF @walkuponce ' Move Player up once.
+waitmovement 0x0
+applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+applymovement 0xFF @walkleftonce ' Move Player up once.
+waitmovement 0x0
+return ' Return to our caller.
+
+#org @movementrightpos
+applymovement 0x1 @walklefttwice ' Move Oak to the left once.
+applymovement 0xFF @walklefttwice ' Move Player up once.
+waitmovement 0x0
+return ' Return to our caller.
+
+'---------
+' Movements Called End
+'---------
+
+'---------
+' Ending Script
+'---------
+
+#org @allposmovements
+applymovement 0x1 @professoroakallpositions ' Move Oak to the entrance of the lab.
+applymovement 0xFF @playerallpositions  ' Move Player behind Oak at the entrance of the lab.
+waitmovement 0x0
+setdooropened 0x6 0x6 ' Open lab door.
+doorchange ' Change it in game.
+applymovement 0x1 @oakentersdoor ' Oak walks into door.
+applymovement 0xFF @playerentersdoor ' Player walks into door.
+waitmovement 0x0
+setdoorclosed 0x6 0x6 ' Close lab door.
+doorchange ' Change it in game.
+setflag 0x901 ' Removes Oak from Pallet Town map.
+clearflag 0x902 ' Shows Oak in the lab.
+setvar 0x5001 0x5 ' When we get to lab, Plays script.
+releaseall ' Release what we locked.
+warp 0x4 0x3 0xFF 0x6 0xC ' Warp to lab.
+end
+
+'---------
+' Ending Script End
+'---------
+
+
+'---------
+' Hacker Function
+'---------
+
+#org @goddamnhacker ' If someone is hacking, we will know if they approach from the top... This will reset the game.
+lock ' Lock the hacker
+msgbox @goddamnhackermessage 0x6 ' Tells the hacker that they are hacking.
+callasm 0x0 ' Resets game.
+end
+
+'---------
+' Hacker Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @problemalert
+= There is a problem.\nAlert the developer, please.
+
+#org @goddamnhackermessage
+= God Damn Hacker! Take this! LOL!
+
+#org @greetings
+= Oak: Ah, hello \v\h01.\nI've been waiting for you.\pLets go to the lab, I have\nsomething important to tell you.
+
+#org @friendiswaiting
+= Oak: Ah, hello \v\h01.\nI do have something to tell you\nbut a friend of yours said he was\nwaiting in Sanohara for you.\pHe seemed like a pretty mean guy\nto me, so do be careful.
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Movements
+'-----------
+#org @faceleft
+#raw 0x2 'Face Left
+#raw 0xFE 'End of Movements
+
+#org @walkdownonce ' Move the player down
+#raw 0x10 'Step Down (Normal)
+#raw 0xFE 'End of Movements
+
+#org @walkleftonce ' Move the player left
+#raw 0x12 'Step Left (Normal)
+#raw 0xFE 'End of Movements
+
+#org @walkuponce ' Move the player up
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @walklefttwice
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0xFE 'End of Movements
+
+#org @professoroakallpositions
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @playerallpositions
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @oakentersdoor
+#raw 0x11 'Step Up (Normal)
+#raw 0x60 'Hide Sprite
+#raw 0xFE 'End of Movements
+
+#org @playerentersdoor
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x60 'Hide Sprite
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+'-----------
+' Script End
+'-----------

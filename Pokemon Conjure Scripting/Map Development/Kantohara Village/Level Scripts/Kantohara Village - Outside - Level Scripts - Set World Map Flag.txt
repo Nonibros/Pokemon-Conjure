@@ -1,0 +1,15 @@
+' Sets pallet town to the place to fly.
+' Set this level script to type 03, On entering map/not on menu close.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xYOUROFFSET
+
+#org @setlocation
+setworldmapflag 0x890
+end
+
+
+'-----------
+' Script End
+'-----------

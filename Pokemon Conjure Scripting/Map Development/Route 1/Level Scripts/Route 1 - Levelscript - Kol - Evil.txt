@@ -1,0 +1,271 @@
+' This activates for the evil side on route 1.
+' Set this level script to type 02, Validates values...
+' In Advance Map, set "Flag:" to "5007" and set "Value:" to "0001"
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction
+lockall
+textcolor 0x0
+call @getplayerposition
+preparemsg @kolsayshello
+waitmsg
+pause 0x55
+closeonkeypress
+showsprite 0x5
+compare 0x4002 0x0
+if 0x1 call @leftmovement1
+compare 0x4002 0x1
+if 0x1 call @rightmovement1
+msgbox @koltoplayer 0x4
+closeonkeypress
+goto @givepokemonmain ' give a pokemon.
+end
+
+#org @endfunction
+lockall
+textcolor 0x0
+msgbox @oakcalls 0x4
+closeonkeypress
+compare 0x4002 0x0
+if 0x1 call @leftmovement2
+compare 0x4002 0x1
+if 0x1 call @rightmovement2
+setflag 0x901 ' Remove Oak by house.
+setflag 0x904 ' Remove Kol.
+clearflag 0x903 ' Show Oak in Kantohara.
+setvar 0x5007 0x2 ' Activates Tilescripts to keep out of route 1.
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Movement Functions
+'---------
+
+#org @leftmovement1
+applymovement 0x5 @leftkolwalksto
+waitmovement 0x0
+return
+
+#org @rightmovement1
+applymovement 0x5 @rightkolwalksto
+waitmovement 0x0
+return
+
+#org @leftmovement2
+applymovement 0x5 @leftkolwalksfrom
+waitmovement 0x0
+return
+
+#org @rightmovement2
+applymovement 0x5 @rightkolwalksfrom
+waitmovement 0x0
+return
+
+'---------
+' Movement Functions End
+'---------
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Get Current Position Function
+'---------
+
+#org @getplayerposition
+getplayerpos 0x4000 0x4001 ' 0x4000 for x, 0x4001 for y.
+compare 0x4000 0x12 ' If x = this, it means the left entrance.
+If 0x1 goto @setvarleft
+compare 0x4000 0x13 ' If x = this, it means the right entrance.
+If 0x1 goto @setvarright
+msgbox @problemalert 0x3 ' A message if there is somehow an issue.
+end
+
+'---------
+' Get Current Position Function End
+'---------
+
+'---------
+' Set Position Variable
+'---------
+
+#org @setvarleft ' Sets a variable for our main function.
+setvar 0x4002 0x0
+return
+
+#org @setvarright ' Sets a variable for our main function.
+setvar 0x4002 0x1
+return
+
+'---------
+' Set Position Variable End
+'---------
+
+'-----------
+' Movements
+'-----------
+
+#org @leftkolwalksto
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0xFE 'End of Movements
+
+#org @leftkolwalksfrom
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x60 'Hide Sprite
+#raw 0xFE 'End of Movements
+
+#org @rightkolwalksto
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0xFE 'End of Movements
+
+#org @rightkolwalksfrom
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x60 'Hide Sprite
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+'---------
+' Strings
+'---------
+
+#org @kolsayshello
+= ???: Hey [player]!
+
+#org @koltoplayer
+= ???: It's good to see you again.\nListen, I have a present for you.\pThis is one of the monsters.\nI know what you're thinking.\p"Why should I use this?"\pIt's for peace my friend.\nUse it well.
+
+#org @oakcalls
+= ???: Also I... What is that\nyelling?\pOAK: Hey [player], I need to see\nyou now! Come alone please!\p???: Ugh, it's that disgusting\nmonster researcher.\pI can practically feel his\ndisease flowing toward me.\pI'm getting the heck out of here\nI'm completely disgusted.\pSee you soon buddy.
+
+#org @problemalert
+= There is a problem.\nAlert the developer, please.
+
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Give Pokemon Script Start
+'---------
+
+'---------
+' Main Function
+'---------
+
+#org @givepokemonmain
+setvar 0x4003 0xF6 ' Set's variable 0x4003 to Larvitar. If you wanted, you could reuse this script exactly as is, for another pokemon, simply by changing this number.
+showpokepic 0x4003 0xA 0x3 ' Shows Picture of Larvitar.
+textcolor 0x0 ' Sets color to blue.
+msgbox @pokemon1message 0x4 ' Display a message telling the player what the pokemon is.
+closeonkeypress
+hidepokepic ' Hide the picture.
+msgbox @hereyougo 0x4
+closeonkeypress
+setflag 0x828 ' Opens pokemon menu, IF NEEDED.
+givepokemon 0x4003 0x5 0x0 0x0 0x0 0x0 ' Give a level 5 Larvitar.
+bufferpokemon 0x0 0x4003 ' To [buffer1] give the value of our variable.
+preparemsg @receivedpoke ' Message of "you received X!"
+waitmsg
+fanfare 0x13E
+waitfanfare
+msgbox @nicknamemessage 0x5 ' Do you want to nickname the pokemon?
+compare LASTRESULT 0x1
+if 0x1 call @nicknamepoke
+goto @endfunction ' Used if we WEREN'T going to the pokedex.
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Nickname
+'---------
+
+#org @nicknamepoke ' Counts the final pokemon, and sets that to the one to nickname.
+countpokemon
+subvar LASTRESULT 0x1
+copyvar 0x8004 LASTRESULT
+fadescreen 0x1
+special 0x9E
+waitstate
+return
+
+'---------
+' Nickname End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @pokemon1message
+= ???: This Pokémon is called\nLarvitar.\pIt seemed to be a strong one, and\nit should serve us well.
+
+#org @hereyougo
+= ???: Here you go, [player].
+
+#org @receivedpoke
+= [player] received the [buffer1]\nfrom ???!
+
+#org @nicknamemessage
+= Do you want to give a nickname to\nthis [buffer1]?
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Give Pokemon Script End
+'---------
+
+
+'-----------
+' Script End
+'-----------

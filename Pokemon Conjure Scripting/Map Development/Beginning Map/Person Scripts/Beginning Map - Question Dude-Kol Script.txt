@@ -1,0 +1,107 @@
+' This is the script for the ??? guy at the beginning.
+' Add 0x900 to ??? or Kol's Person ID in Advance Map to remove him from there forever.
+' Complete: 8:43 PM 6/17/2016
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @main
+lock
+setflag 0x900 ' This should be added to the NPC's PERSON ID, so that NPC will NEVER appear on that map again.
+setvar 0x5001 0x2 ' Disables tilescripts, sets narration on next map to active.
+msgbox @areyouwithmeornot 0x5
+compare 0x800D 0x1 ' Same as last result, just looks cleaner.
+if 0x1 goto @evilside ' If we said yes, we will go to the evil side.
+goto @goodside ' otherwise we have choosen the good.
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Mini Functions
+'---------
+
+#org @goodside
+call @setvariablesgood ' Sets our variables to the good side.
+applymovement 0x1 @exclaim ' NPC makes an exclamation mark before facing the player.
+waitmovement 0x0 ' wait until he is finished.
+clearflag 0x230 ' Sets the player to good. Not needed.
+faceplayer
+playsong 0x112 0x0 ' Mewtwos theme since he gonna get you, lol.
+msgbox @goodsidemessage 0x6
+release
+warp 0x4 0x1 0xFF 0x2 0x5 ' Home base warp.
+end
+
+#org @evilside
+call @setvariablesbad ' Sets our variables to the evil side.
+setflag 0x230 ' Sets the player to evil.
+faceplayer
+msgbox @evilsidemessage 0x6
+release
+warp 0x4 0x1 0xFF 0x2 0x5 ' Home base warp.
+end
+
+#org @setvariablesgood ' These allow only good events to happen. Bad ones never will.
+setvar 0x5004 0x1
+setvar 0x5005 0x1
+setvar 0x5006 0x1
+setvar 0x5007 0x0
+setvar 0x5008 0x0
+setvar 0x5009 0x0
+return
+
+#org @setvariablesbad ' These allow only bad events to happen. Good ones never will.
+setvar 0x5004 0x0
+setvar 0x5005 0x0
+setvar 0x5006 0x0
+setvar 0x5007 0x1
+setvar 0x5008 0x1
+setvar 0x5009 0x1
+return
+
+'---------
+' Mini Functions End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @areyouwithmeornot
+= ???: You know, I've been thinking.\p\v\h01: Hm?\p???: Pok\h1Bmon.\pSuch horrible creatures.\pThey turn us humans into such\naddicts.\pThey kill and attack without\nhesitation.\pSomeday I'll wipe them all out\nwith you.\pRight \v\h01?
+
+#org @evilsidemessage
+= ???: Yeah, I knew you would say\nthat, \v\h01.\pWe should probably head back now.\pSayonara!
+
+#org @goodsidemessage
+= ???: What?\nAre you crazy?\pYou must be one of those addicts\ntoo.\pI'm heading back now.\nYou'll regret this, \v\h01...
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Movements
+'-----------
+#org @exclaim
+#raw 0x65 'Double Exclamation Mark (!!)
+#raw 0xFE 'End of Movements
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

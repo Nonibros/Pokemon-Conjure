@@ -1,0 +1,33 @@
+'This is a simple newspaper script to give some character to certain houses.
+'---------
+' Script Start
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @newspaper
+msgbox @newspapermessage 0x6
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @newspapermessage
+= It's a newspaper.\pIt contains all sorts of\nunhealthy reading material.
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

@@ -1,0 +1,22 @@
+' This one is very very simple. What this does is give a specified item, the quantity of the item, and displays a message.
+' Behind the scenes, this also sets the Person ID flag and hides the item in game.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @gaveitem
+giveitem 0xC 0x3 MSG_FIND ' Gives 3 Preimer balls and displays a message.
+end
+
+'---------
+' Main Function End
+'---------
+
+'-----------
+' Script End
+'-----------

@@ -1,0 +1,83 @@
+' This is for the mom in house 2 in Thimble Town.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
+lock
+faceplayer
+call @randommessagesystem ' Calling the system here.
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Random Message System
+'---------
+
+#org @randommessagesystem ' We are picking a random number here. What ever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @messageprep1
+compare 0x800D 0x1
+if 0x1 goto @messageprep2
+goto @messageprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Random Message System End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @messageprep1
+msgbox @message1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @messageprep2
+msgbox @message2 0x6
+return
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @message1
+= My children are usually a handful\nexcept the little one here.\lThe other two always play\loutside, jumping over dangerous\lledges, and just being generally\lmischievous while this little one\ljust watches T.V.\pI do wish he would go outside\nsometimes though...
+
+#org @message2
+= I sometimes have a babysitter\ncome over so I can be free for an\levening.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

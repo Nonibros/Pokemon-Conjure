@@ -1,0 +1,18 @@
+' As soon as we start the game, this activates.
+' This is used to set certain people IDs that shouldn't show up at the beginning of the game. Example is professor Oak in his lab.
+' Set this level script to type 04, Validates values...
+' In Advance Map, set "Flag:" to "5001" and set "Value:" to "0000"
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+#org @setinitialflags
+setflag 0x902 ' Oaks lab Person ID.
+setflag 0x903 ' Oak Evil Person ID.
+setflag 0x904 ' Kol Route 1 Person ID.
+end
+'-----------
+' Script End
+'-----------

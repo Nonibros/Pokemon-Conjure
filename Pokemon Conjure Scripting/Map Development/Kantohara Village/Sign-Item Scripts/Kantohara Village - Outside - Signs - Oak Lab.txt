@@ -1,0 +1,33 @@
+'The sign in front of Oaks lab.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @labsign
+msgbox @labsignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @labsignmessage
+= Professor Oak's Laboratory
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

@@ -1,0 +1,59 @@
+' This scripts tells you to get your shoes.
+' Place this on a tile script by the exit.
+' In Advance Map, set "Var number: 5001" and set "Var value: 0003".
+' I designed the script so that, even if a player steps on it while it is active, there is a check to see if you have running shoes. If you do, it'll release you.
+'Completed: 12:04 PM 6/24/2016
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @tilescript
+lockall
+checkflag 0x82F
+if 0x1 goto @gotshoes
+textcolor 0x2 ' Sets text to black.
+msgbox @needshoes 0x4 ' Display a message
+closeonkeypress
+applymovement MOVE_PLAYER @stepdown ' Move player down.
+waitmovement 0x0
+releaseall
+end
+
+#org @gotshoes
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+#org @needshoes
+= Whoops I forgot something!\nI can't leave without my shoes!
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Movements
+'-----------
+#org @stepdown
+#raw 0x10 'Step Down (Normal)
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

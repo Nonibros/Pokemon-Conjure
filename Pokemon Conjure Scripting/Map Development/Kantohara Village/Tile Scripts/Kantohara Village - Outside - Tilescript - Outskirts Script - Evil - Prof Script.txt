@@ -1,0 +1,374 @@
+' This script activates for the evil side.
+' It makes the professor walk up to the player and then walk to the lab.
+' When this is compiled XSE gives you the offsets for @tilescriptleft and @tilescriptright.
+' Then add the offsets to each script tile in Advance Map.
+' Left for left, right for right, and the script does the rest of the work.
+' In Advance Map, set "Var number:" to "5007" and set "Var value:" to "0002".
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Tilescript Left Function
+'---------
+
+#org @tilescriptleft
+setvar 0x4001 0x0 ' I am setting a temporary variable here to choose which movement I want.
+goto @mainfunction
+
+'---------
+' Tilescript Left Function End
+'---------
+
+'---------
+' Tilescript Right Function
+'---------
+
+#org @tilescriptright
+setvar 0x4001 0x1 ' I am setting a temporary variable here to choose which movement I want.
+goto @mainfunction
+
+'---------
+' Tilescript Right Function End
+'---------
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction
+lockall
+textcolor 0x0
+compare 0x4001 0x0
+if 0x1 call @leftmovement1
+compare 0x4001 0x1
+if 0x1 call @rightmovement1
+msgbox @greetingsevil 0x4
+closeonkeypress
+compare 0x4001 0x0
+if 0x1 call @leftmovement2
+compare 0x4001 0x1
+if 0x1 call @rightmovement2
+setdooropened 0x6 0x6 ' Open lab door.
+doorchange ' Change it in game.
+applymovement 0x6 @oakentersdoor ' Oak walks into door.
+applymovement 0xFF @playerentersdoor ' Player walks into door.
+waitmovement 0x0
+setdoorclosed 0x6 0x6 ' Close lab door.
+doorchange ' Change it in game.
+setflag 0x903 ' Removes Oak from Pallet Town map.
+clearflag 0x902 ' Shows Oak in the lab.
+setvar 0x5001 0x5 ' When we get to lab, Plays script.
+releaseall ' Release what we locked.
+warp 0x4 0x3 0xFF 0x6 0xC ' Warp to lab.
+end
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Movement Functions
+'---------
+
+#org @leftmovement1
+applymovement 0x6 @leftmovementmove
+waitmovement 0x0
+return
+
+#org @rightmovement1
+applymovement 0x6 @rightmovementmove
+waitmovement 0x0
+return
+
+#org @leftmovement2
+applymovement 0x6 @leftmovementoaklabmove ' Move Oak to the entrance of the lab.
+applymovement 0xFF @leftmovementplayerlabmove  ' Move Player behind Oak at the entrance of the lab.
+waitmovement 0x0
+return
+
+#org @rightmovement2
+applymovement 0x6 @rightmovementoaklabmove ' Move Oak to the entrance of the lab.
+applymovement 0xFF @rightmovementplayerlabmove  ' Move Player behind Oak at the entrance of the lab.
+waitmovement 0x0
+return
+
+'---------
+' Movement Functions End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @greetingsevil
+= Oak: \v\h01. Come with me to\nthe lab, I have something\limportant to tell you.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Movements
+'-----------
+#org @leftmovementmove
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x1  'Face Up
+#raw 0xFE 'End of Movements
+
+#org @leftmovementoaklabmove
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @leftmovementplayerlabmove
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @rightmovementmove
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @rightmovementoaklabmove
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x1  'Face Up (Normal)
+#raw 0x1C 'Delay5
+#raw 0x1C 'Delay5
+#raw 0x1C 'Delay5
+#raw 0x1C 'Delay5
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @rightmovementplayerlabmove
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x1  'Face Up (Normal)
+#raw 0x1C 'Delay5
+#raw 0x1C 'Delay5
+#raw 0x1C 'Delay5
+#raw 0x1C 'Delay5
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x10 'Step Down (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x13 'Step Right (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0xFE 'End of Movements
+
+#org @oakentersdoor
+#raw 0x11 'Step Up (Normal)
+#raw 0x60 'Hide Sprite
+#raw 0xFE 'End of Movements
+
+#org @playerentersdoor
+#raw 0x11 'Step Up (Normal)
+#raw 0x11 'Step Up (Normal)
+#raw 0x60 'Hide Sprite
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+
+'-----------
+' Script End
+'-----------

@@ -1,0 +1,33 @@
+'The sign at Route 1.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @route1sign
+msgbox @route1signmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @route1signmessage
+= Route 1\nKantohara Village - Thimble Town
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

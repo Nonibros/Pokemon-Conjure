@@ -1,0 +1,44 @@
+' Gives the player running shoes when they talk to a pokeball.
+' Add "082F" To the Person ID in Advance Map for the pokeball.
+'Complete: 12:02 PM 6/24/2016
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @runningshoes
+lock
+textcolor 0x2 ' Sets text to black.
+setvar 0x5001 0x4 ' Removes the script at the door.
+setflag 0x82F ' Activates Running Shoes. Also hides ball forever.
+hidesprite 0x800F ' Hides sprite we are talking with, the ball in this case.
+fanfare 0x101
+preparemsg @obtainedshoes ' Display a message
+waitmsg
+waitfanfare
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @obtainedshoes
+= Obtained the Running shoes!\nYou put these awesome shoes on.\pThere is a note attached:\nHold B while walking to run.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

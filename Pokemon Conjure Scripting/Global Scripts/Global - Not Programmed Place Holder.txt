@@ -1,0 +1,34 @@
+'This functions offset should be added to any players you haven't worked on.
+'When/If you have beta testers, If they see this message once that area is complete, it means you missed a spot.
+'---------
+' Script Start
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @main
+msgbox @notprogrammed 0x6
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @notprogrammed
+= This hasn't been programmed\nyet.\pPlease let the developer know.\nThank you.
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

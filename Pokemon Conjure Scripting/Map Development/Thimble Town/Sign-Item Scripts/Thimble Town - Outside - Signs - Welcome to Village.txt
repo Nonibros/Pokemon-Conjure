@@ -1,0 +1,33 @@
+'The sign for the town.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @townsign
+msgbox @townsignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @townsignmessage
+= Welcome to Thimble Town!\pMotto:\n"The tiny, unnotable town."
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

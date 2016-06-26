@@ -1,0 +1,20 @@
+Alright, so this is an example of the system in work.
+
+After PMing Hajima, who then PMed Nonibros, with a well written script, Frank The Beast was "hired" as a scripter.
+Nonibros is the scripting coordinator, so he is the one who assigns blocks and flags, as well as the map for Frank to work on.
+A dialogue is below.
+
+Nonibros: Ok FranktheBeast, you seem to be able to make good scripts. What's your specialty?
+Frank The Beast: Well, I do like developing characters and I'm good at making item scripts.
+Nonibros: Alright, perfect. Let's see, Kelly The Flower Of Doom is working on Route 3. We do need someone for Route 4 however, so that will be your map.
+Nonibros: Hmm, ok, I think for Route 4, we will need about 8 NPCs. 3 will be trainers, which I will handle after you're finished, so how about you handle the other five?
+Frank The Beast: Sure, sounds good.
+Nonibros: Alright, one person should have a 1 in 15 chance of giving an item.
+Nonibros: Use the Template script for making random messages for all NPC's, and add as many messages as you'd like.
+Frank The Beast: Ok.
+Nonibros: You will be assigned the flag block of 0x920 - 0x92F for any people as you work on the project, 0xA20 - 0xA2F for items, 0xC20 - 0xC2F for events.
+Nonibros: These are your assigned flag blocks as a scripter. PM or IRC me if you need to use a variable. Do the same if you run out of blocks during your time with us.
+Nonibros: Your scripting block will be 0x1228000 - 0x122FFFF. Again, let me know if you need more.
+Frank The Beast: Ok, I'll start working on it.
+Nonibros: One more thing, please make a personal Reserved Flags and Variables list so that we know what you have used, and we can add it to the main repo.
+Frank The Beast: Sure thing leader.

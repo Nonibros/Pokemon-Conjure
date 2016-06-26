@@ -1,0 +1,33 @@
+'The sign in front of the Shiro house.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @shirosign
+msgbox @shirosignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @shirosignmessage
+= Shiro Home
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

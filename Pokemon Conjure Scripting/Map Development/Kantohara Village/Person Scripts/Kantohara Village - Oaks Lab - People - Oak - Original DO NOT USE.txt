@@ -1,0 +1,254 @@
+'Script for Oak in his lab.
+'This one looks like a lot, but there are sections.
+'Search for "Start" To find the sections.
+'-----------
+' Script Start
+'-----------
+
+'-----------
+' Main Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @main
+lock
+faceplayer
+checkflag 0xC00
+If 0x1 goto @afteritems ' This can be replaced with a different pointer to an ENTIRLY different script.
+'Meaning, you could compile this once, compile a new script elsewhere saying what you would like after talking to Oak, change the offset here to whatever your new script is, re-compile it and VOILA, done. It will then point to the new script after getting the items from oak.
+msgbox @greetings 0x6
+goto @givepokemonmain
+end
+
+#org @afteritems
+msgbox @goodluck 0x6
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @greetings
+= OAK: [player]...\nWe have made a great discovery!\pThis discovery is so great, it\nwill reign in a new era of\lPokemon.\pIt's something greater than we\ncould have ever hoped for.\pConjure.\pIt gives a Pokemon tremondous\npower akin to near immortality.\p[player], I want you to go on a\njourney and do field research on\lConjure Pokemon.\pBut before you leave, I need to\ngive you some things.
+
+#org @goodluck
+= Good luck and enjoy your journey\n[player].
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Main Script End
+'-----------
+
+'This is used to give the player a selected Pokemon.
+'Variable 0x4003 controls which Pokemon to give, as shown below.
+'---------
+' Give Pokemon Script Start
+'---------
+'ADD this in the case of a new person. Since we are just calling this function, dynamic is not needed.
+'#dynamic 0xoffset
+
+'---------
+' Main Function
+'---------
+
+#org @givepokemonmain
+' This part is added if you want the NPC to tell the player they have no room.
+'countpokemon ' Checks to see if we have 6 pokemon.
+'compare 0x800D 0x6
+'if 0x1 goto @needroom
+msgbox @youllneedapokemon 0x6
+setvar 0x4003 0x18B ' Set's variable 0x4003 to Bagon. If you wanted, you could reuse this script exactly as is, for another pokemon, simply by changing this number.
+'A NOTE: You need to use the INDEX number of the pokemon, NOT the national dex number. The first 251 pokemon have the same index number as their national number, but after 251, you need to look at the INDEX number.
+'I had run into a problem where I was giving out 0x173 = 371, which is the national dex number of bagon. HOWEVER, Bagons INDEX number is 395 = 0x18B. The pokemon with the INDEX number of 371 is Loudred, whose national dex number is 294.
+'You can check the index number of a pokemon in Pokemon Game Editor.
+call @showpic ' Show a picture of our pokemon.
+msgbox @pokemon1message 0x6 ' Display a message telling the player what the pokemon is.
+hidepokepic ' Hide the picture.
+msgbox @hereyougo 0x6
+setflag 0x828 ' Opens pokemon menu, IF NEEDED.
+givepokemon 0x4003 0x5 0x0 0x0 0x0 0x0 ' Give a level 5  Bagon.
+bufferpokemon 0x0 0x4003 ' To [buffer1] give the value of our variable.
+preparemsg @receivedpoke ' Message of "you received X!"
+waitmsg
+fanfare 0x13E
+waitfanfare
+msgbox @nicknamemessage 0x5 ' Do you want to nickname the pokemon?
+compare LASTRESULT 0x1
+if 0x1 call @nicknamepoke
+goto @givepokedexmain ' This template is based off of Professor Oaks Speech in his lab, therefore at the end here, we will also give the player a Pokedex.
+'goto @ending ' Used if we WEREN'T going to the pokedex.
+
+#org @showpic
+showpokepic 0x4003 0xA 0x3 ' Shows Picture of Bagon.
+textcolor 0x0 ' Sets color to blue.
+return
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' No Room Messages
+'---------
+'Used if this WASN'T the first Pokemon giving, ie. This is the lab. ANYWHERE ELSE and you would NEED this part.
+'#org @needroom
+'msgbox @noroommessage 0x6
+'release
+'end
+
+'---------
+' No Room Messages End
+'---------
+
+'---------
+' Nickname
+'---------
+
+#org @nicknamepoke ' Counts the final pokemon, and sets that to the one to nickname.
+countpokemon
+subvar LASTRESULT 0x1
+copyvar 0x8004 LASTRESULT
+fadescreen 0x1
+special 0x9E
+waitstate
+return
+
+'---------
+' Nickname End
+'---------
+
+' Used if we WEREN'T going to give the pokedex.
+'---------
+' Closing
+'---------
+'#org @ending ' Relock then say goodbye.
+'lock
+'faceplayer
+'msgbox @goodjourney 0x6
+'release
+'end
+'---------
+' Closing End
+'---------
+
+'---------
+' Strings
+'---------
+' Used for ANY other pokemon giving script.
+'#org @noroommessage
+'= You have no space.
+'
+'#org @goodjourney
+'= Please treat [buffer1] well, and\nhave fun together!
+
+#org @pokemon1message
+= OAK: This Pokémon is called\nBagon.\pIt's a tough Pok\h1bmon to raise,\nbut it's definitely worth it.
+
+#org @hereyougo
+= Here you go, [player].
+
+#org @receivedpoke
+= [player] received the [buffer1]\nfrom Prof. Oak!
+
+#org @nicknamemessage
+= Do you want to give a nickname to\nthis [buffer1]?
+
+#org @youllneedapokemon
+= OAK: The first thing you'll need\nis a Pok\h1Bmon.\pThis one is from the Hoenn Region.
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Give Pokemon Script End
+'---------
+
+'---------
+' Give Pokedex Script Start
+'---------
+
+'---------
+' Main Function
+'---------
+
+#org @givepokedexmain
+lock
+faceplayer ' Relocks because the player may have nicknamed.
+msgbox @finalitem 0x6 ' Tells the player about the pokedex.
+applymovement 0x4 @faceright ' Oak faces to the right.
+waitmovement 0x0
+pause 0xA ' Pause a little.
+hidesprite 0x9 ' Hides the pokedex.
+pause 0xA ' Pause a little.
+applymovement 0x4 @facedown ' Oak faces down again.
+waitmovement 0x0
+setflag 0x829 ' Set's pokedex.
+special 0x16F ' Upgrades to national dex immediately.
+fanfare 0x13E ' Fanfare of getting item.
+textcolor 0x2 ' Sets color to black.
+msgbox @receivedpokedex 0x6 ' Tells the player they have receieved the pokedex.
+waitfanfare ' Wait's until fanfare finishes.
+setflag 0xC00 ' Tells the game we have completed our events.
+textcolor 0x0 ' Sets color to blue.
+msgbox @dowellonyouradventure 0x6 ' Oak says bye.
+release 'release the player
+end
+
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @finalitem
+= OAK: The final thing I'm going to\ngive you is a blank Pok\h1Bdex.\pI am hoping you can get data on\nmany new Pok\h1Bmon in the field.\pWe currently have a list of about\n230, so I hope you can increase\lthat.\pI also figured it'd be more\ninteresting for you if we just\lcleared the list on this model.\pAnyway, enough rambling, here you\nare!
+
+#org @receivedpokedex
+= You received a Pok\h1Bdex from\nProf. Oak!\
+
+#org @dowellonyouradventure
+= Do well on your adventure and\nmake me proud, [player]!
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Movements
+'-----------
+
+#org @facedown
+#raw 0x2D 'Face Down (Delayed)
+#raw 0xFE 'End of Movements
+
+#org @faceright
+#raw 0x30 'Face Right (Delayed)
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+'---------
+' Give Pokedex Script End
+'---------
+
+'-----------
+' Script End
+'-----------

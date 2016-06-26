@@ -1,0 +1,55 @@
+'The little sign in your room, that adds more effect to the weight of the players choice.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @main
+checkflag 0x230
+if 0x1 goto @badsign
+goto @goodsign
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Message Functions
+'---------
+
+#org @badsign
+msgbox @badsignmessage 0x3
+end
+
+
+#org @goodsign
+msgbox @goodsignmessage 0x3
+end
+
+'---------
+' Message Functions End
+'---------
+
+
+'---------
+' Strings
+'---------
+#org @badsignmessage
+= It's list of plans for the\ndestruction of all Pok\h1Bmon...
+
+#org @goodsignmessage
+= It shows some tiny pictures of\nyou and Prof. Oak. in the lab.\pAh, such wonderful times...
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

@@ -1,0 +1,21 @@
+' This will move oak to the door, making it look as if he's entered.
+' Set this level script to type 03, On entering map/not on menu close.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+#org @main
+compare 0x5001 0x5 ' checks to see if we have talked to oak outside.
+if 0x1 call @oakentrance
+end
+
+#org @oakentrance
+movesprite2 0x4 0x6 0xB ' Move him to one space above the door.
+spritebehave 0x4 0x7 ' Make him face up.
+playsong2 0x12E ' Continues his little jingle.
+return
+
+'-----------
+' Script End
+'-----------

@@ -1,0 +1,58 @@
+To illistrate what I did to get the movements.
+movement(direction) is how oak and the player move when facing oak from that direction
+I physically moved the npcs to get this, so do that when calculating what movement's you'll need.
+Also, you'll notice that in all three movements, I made a movement that applies to all directions for both oak and the player, which saves space and gives the script a clean look.
+What you can do with that information is, after moving a player movements compatible to the way you talk to the NPC, you can go to a general script, which will move them the rest of the way, open the door, and make them disappear.
+So, I decided for each movement, "when player is facing oak from direction X, how should oak and the player move."
+These non-code movements are what I got. Then, I translated them into the code.
+
+movementleft:
+faceleft - oak
+
+walkdown - player
+
+walkleftonce - oak
+
+walkleftonce - oak
+walkup - player
+
+walk 11 left walk up 3 - oak
+walk 12 left walk up 2 - player
+
+open door
+
+walkintodoor - oak
+walkintodoor - player
+
+
+
+movementdown:
+walkleftonce - oak
+walkuponce - player
+
+walkleftonce - oak
+walkleftonce - player
+
+walk 11 left walk up 3 - oak
+walk 12 left walk up 2 - player
+
+open door
+
+walkintodoor - oak
+walkintodoor - player
+
+
+movementright:
+walklefttwice - oak
+walklefttwice - player
+
+walk 11 left walk up 3 - oak
+walk 12 left walk up 2 - player
+
+open door
+
+walkintodoor - oak
+walkintodoor - player
+
+movementup:
+reset game, since this is impossible, as oak is covered from the top.

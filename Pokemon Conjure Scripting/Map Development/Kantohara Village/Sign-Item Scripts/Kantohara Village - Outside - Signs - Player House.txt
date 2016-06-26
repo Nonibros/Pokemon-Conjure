@@ -1,0 +1,33 @@
+'The sign in front of the players house.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @playersign
+msgbox @playersignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @playersignmessage
+= [player]'s House
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

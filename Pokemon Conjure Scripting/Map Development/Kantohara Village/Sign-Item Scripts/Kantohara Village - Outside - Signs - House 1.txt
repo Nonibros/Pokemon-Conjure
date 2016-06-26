@@ -1,0 +1,33 @@
+'The sign for the first house.
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @house1sign
+msgbox @house1signmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @house1signmessage
+= I love Johto!\nCome on in!
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------
