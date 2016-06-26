@@ -3,8 +3,33 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Note
-- Add 1.0.0 to Repo
+### Added
+- Fix the first house in Thimble Town.
+- Develop Route 2.
+- Further Develop Sanohara.
+- Add some more easter eggs. :)
+
+## [1.0.3] - 2016-06-26 [PLANNED]
+### Changed
+- Changed the wild pokemon on route 1 to make them easier to fight. Machop in particular insta-killed Larvitar.
+- Cleared out and re-made the dude in green's dialogue to fix a spelling mistake.
+
+### Fixed
+- Fixed some grammer mistakes, mostly for the dude on Route 1.
+
+## [1.0.2] - 2016-06-26 [PLANNED]
+### Added
+- Completed all of route 1. All the trainers here work well.
+
+## [1.0.1] - 2016-06-26 [PLANNED]
+### Added
+- Completed all the NPC's in Professor Oaks Lab.
+
+## [1.0.0] - 2016-06-26
+### Added
+- This is where everything is added that was finished before making the Git.
+- Currently we are finished with Thimble town and Kantohara Village, and need to work
+on Route 1 and Oaks lab.
 
 ## [0.0.1] - 2016-06-26 [INITIAL]
 ### Added
