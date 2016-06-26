@@ -1,0 +1,30 @@
+# Change Log
+All notable changes to this project will be documented in this file.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [Unreleased]
+### Note
+- Add 1.0.0 to Repo
+
+## [0.0.1] - 2016-06-26 [INITIAL]
+### Added
+- This CHANGELOG file to hopefully serve as a point of reference for
+everyone working on the Pokemon Conjure team.
+- Created the git itself.
+- Used the rombase of Pokefreak890 as the starting point on a vanilla Firered rom, v1.0.
+- Added my rombase which includes JPANS save block patch and other fixes.
+- Going to fork from here a major change.
+
+## [Key Notes] - 2016-06-26
+### Note
+- 0.0.1 is a special patch. This is the one and only time that one needs to
+patch it to a clean rom. The rest of the patches will be independent, that is
+you can patch ANY of them to the 0.0.1 patch and play.
+
+### Note
+- The only time we change the X in X.Y.Z is when something REALLY major happens.
+This can be either a huge overall graphics improvement, or the addition of some major
+ASM Code that changes everything. We may also use this for REALLY major events in game
+where we feel a break point is needed.
+- After major in-game events, such as beating a gym, the increment will be the Y in X.Y.Z.
+- After regular changes like fully developing route one, the increment will be the Z in X.Y.Z.
