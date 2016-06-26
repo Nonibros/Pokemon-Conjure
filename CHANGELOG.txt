@@ -30,6 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - This is where everything is added that was finished before making the Git.
 - Currently we are finished with Thimble town and Kantohara Village, and need to work
 on Route 1 and Oaks lab.
+- Fix Oak's speech from then to than.
 
 ## [0.0.1] - 2016-06-26 [INITIAL]
 ### Added
