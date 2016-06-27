@@ -5,22 +5,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Fix the first house in Thimble Town.
-- Extend thimble, as you can't see the trainer until entering the map.
 - Develop Route 2.
 - Further Develop Sanohara.
 - Add some more easter eggs. :)
+- Fix healing when player dies. Right now, you fight Blane as punishment :).
 
-## [1.0.3] - 2016-06-26 [PLANNED]
+## [1.0.3] - 2016-06-XX [PLANNED]
+### Added
+- Completed the trainers on route 1.
+
+## [1.0.2] - 2016-06-27
 ### Changed
-- Changed the wild pokemon on route 1 to make them easier to fight. Machop in particular insta-killed Larvitar.
+- Extended Route 1 so that the trainer near the exit doesn't just "appear."
+- Changed the wild pokemon on Route 1 to make them easier to fight. Machop in particular insta-killed Larvitar, so he is now more rare to find. If you do find him however, RUN!
 - Cleared out and re-made the dude in green's dialogue to fix a spelling mistake.
+- Moved the mother and Verne outside until I can fix the issues.
+- Opened Route 2, though it has not been edited yet.
 
 ### Fixed
-- Fixed some grammer mistakes, mostly for the dude on Route 1.
+- Advance Map was having some issues. I filled in all random empty space between 0x1500000 - 0x1504A00.
 
-## [1.0.2] - 2016-06-26 [PLANNED]
-### Added
-- Completed all of route 1. All the trainers here work well.
+### Attempted
+- A failed second map for Thimble Town to try to fix some glitches.
 
 ## [1.0.1] - 2016-06-26
 ### Added

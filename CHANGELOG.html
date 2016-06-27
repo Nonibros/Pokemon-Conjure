@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,13 +14,13 @@
 </ul>
 </div>
 <div class="content">
-<h1 style="text-align: center;">Pokemon Conjure Change Log</h1>
+<h1 style="text-align: center;">Pokémon Conjure Change Log</h1>
 
 <p style="text-align: center;">Latest update: June 26th 2016</p>
 
 <h2>Introduction</h2>
 
-<p>This change log is for the Pokemon Firered hack, Pokemon Conjure by Hajima and Nonibros. The thread containing the details on the project can be found <a href="http://www.pokecommunity.com/showthread.php?p=9255238">here</a>.</p>
+<p>This change log is for the Pokémon Firered hack, Pokémon Conjure by Hajima and Nonibros. The thread containing the details on the project can be found <a href="http://www.pokecommunity.com/showthread.php?p=9255238">here</a>.</p>
 
 <p>See <a href="https://github.com/Nonibros/Pokemon-Conjure">here</a> for the GitHub project.</p>
 
@@ -32,7 +32,7 @@
 
 <p>If you find any bugs, or there are broken parts of the game, PM Nonibros or Hajima on the <a href="http://www.pokecommunity.com/">forums</a>.</p>
 
-<h2>[Key Notes] - 2016-06-26</h2>
+<h2>Key Notes</h2>
 
 <h3>Note</h3>
 
@@ -43,14 +43,16 @@
 <h3>Note</h3>
 
 <ul>
-<li>The only time we change the X in X.Y.Z is when something REALLY major happens. This can be either a huge overall graphics improvement, or the addition of some major ASM Code that changes everything. We may also use this for REALLY major events in game where we feel a break point is needed.</li>
+<li>The only time we change the X in X.Y.Z in our version number is when something REALLY major happens. This can be either a huge overall graphics improvement, or the addition of some major ASM Code that changes everything. We may also use this for REALLY major events in game where we feel a break point is needed.</li>
 <li>After major in-game events, such as beating a gym, the increment will be the Y in X.Y.Z.</li>
 <li>After regular changes like fully developing route one, the increment will be the Z in X.Y.Z.</li>
 </ul>
 
 <h2>Notes</h2>
 
-<p>Some people have found a easter egg and think it's a glitch or broken game. It's not. To those whom don't know, you might find it. :)</p>
+<p>Some people have found a easter egg and think it's a glitch or broken game. It's not. To those whom don't know, you might find it.</p>
+<p>HINT 1: It's only for the bad side.</p>
+<p>HINT 2: It's between Route 1 and Kantohara.</p>
 
 <h2>Known Issues</h2>
 
@@ -58,35 +60,66 @@
 
 <ul>
 <li>The first house in Thimble Town has a broken warp that breaks the game.</li>
+<li>There is currently no healing center nor mom, so when the player loses, the healing doesn't work right. Right now you are healed and you fight Blane as punishment for losing :).</li>
 </ul>
 
-<h2>[Unreleased] - List of plans to implement.</h2>
-
-<h3>To Do</h3>
+<p>These issues are known by the developers but won't be fixed.</p>
 
 <ul>
-<li>Fix the first house in Thimble Town.</li>
-<li>Develop Route 2.</li>
-<li>Extend thimble, as you can't see the trainer until entering the Route 1, which looks funny.</li>
-<li>Further Develop Sanohara.</li>
-<li>Add some more easter eggs. :)</li>
+<li>When walking to the lab, it's possible for Oak to walk through the old lady. This won't be changed because it is funny. :)</li>
 </ul>
 
-<h2>[1.0.3] - 2016-06-26 [PLANNED]</h2>
+<h2>Some Ideas</h2>
+
+<h3>Ideas</h3>
+
+<ul>
+<li>Add shiny Pokémon trainer battles.</li>
+<li>Further Develop Sanohara.</li>
+<li>Add some more easter eggs. :)</li>
+<li>Add Shiny Pokémon ASM for random shiny battles.</li>
+</ul>
+
+<h2>Planned Releases</h2>
+
+<p>These will be numbered releases that will be released when their key features are finished.</p>
+
+<h3>Version [1.0.4] Release</h3>
+
+<ul>
+<li>Make map for Route 2 including needed events.</li>
+<li>Make the wild Pokémon for Route 2.</li>
+<li>Start to plan ideas for Route 2. (Dialogue, events, length, difficulty, etc.)</li>
+</ul>
+
+<h3>Version [1.0.3] Release</h3>
+
+<ul>
+<li>Complete the trainers on Route 1.</li>
+</ul>
+
+<h2>[1.0.2] - 2016-06-27</h2>
 
 <h3>Changed</h3>
 
 <ul>
-<li>Changed the wild pokemon on route 1 to make them easier to fight. Machop in particular insta-killed Larvitar.</li>
+<li>Extended Route 1 so that the trainer near the exit doesn't just "appear."</li>
+<li>Changed the wild pokemon on Route 1 to make them easier to fight. Machop in particular insta-killed Larvitar, so he is now more rare to find. If you do find him however, RUN!</li>
 <li>Cleared out and re-made the dude in green's dialogue to fix a spelling mistake.</li>
+<li>Moved the mother and Verne outside until I can fix the issues.</li>
+<li>Opened Route 2, though it has not been edited yet.</li>
 </ul>
 
-<h2>[1.0.2] - 2016-06-26 [PLANNED]</h2>
-
-<h3>Added</h3>
+<h3>Fixed</h3>
 
 <ul>
-<li>Completed all of route 1. All the trainers here work well.</li>
+<li>Advance Map was having some issues. I filled in all random empty space between 0x1500000 - 0x1504A00.</li>
+</ul>
+
+<h3>Attempted</h3>
+
+<ul>
+<li>A failed second map for Thimble Town to try to fix some glitches.</li>
 </ul>
 
 <h2>[1.0.1] - 2016-06-26</h2>
@@ -127,7 +160,7 @@
 <h3>Added</h3>
 
 <ul>
-<li>This CHANGELOG file to hopefully serve as a point of reference for everyone working on the Pokemon Conjure team.</li>
+<li>This CHANGELOG file to hopefully serve as a point of reference for everyone working on the Pokémon Conjure team.</li>
 <li>I created this HTML file and the GitHub page.</li>
 <li>Used the rombase of Pokefreak890 as the starting point on a vanilla Firered rom, v1.0.</li>
 <li>Added my rombase which includes JPANS save block patch and other fixes.</li>
