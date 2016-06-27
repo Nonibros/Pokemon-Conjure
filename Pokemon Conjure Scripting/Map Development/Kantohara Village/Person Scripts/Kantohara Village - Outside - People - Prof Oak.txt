@@ -122,28 +122,28 @@ end
 '---------
 
 #org @movementleftpos
-applymovement 0x1 @faceleft ' Face Oak to the left.
+applymovement 0xP @faceleft ' Face Oak to the left.
 waitmovement 0x0
 applymovement 0xFF @walkdownonce ' Move player down.
 waitmovement 0x0
-applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+applymovement 0xP @walkleftonce ' Move Oak to the left once.
 waitmovement 0x0
-applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+applymovement 0xP @walkleftonce ' Move Oak to the left once.
 applymovement 0xFF @walkuponce ' Move Player up once.
 waitmovement 0x0
 return ' Return to our caller.
 
 #org @movementdownpos
-applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+applymovement 0xP @walkleftonce ' Move Oak to the left once.
 applymovement 0xFF @walkuponce ' Move Player up once.
 waitmovement 0x0
-applymovement 0x1 @walkleftonce ' Move Oak to the left once.
+applymovement 0xP @walkleftonce ' Move Oak to the left once.
 applymovement 0xFF @walkleftonce ' Move Player up once.
 waitmovement 0x0
 return ' Return to our caller.
 
 #org @movementrightpos
-applymovement 0x1 @walklefttwice ' Move Oak to the left once.
+applymovement 0xP @walklefttwice ' Move Oak to the left once.
 applymovement 0xFF @walklefttwice ' Move Player up once.
 waitmovement 0x0
 return ' Return to our caller.
@@ -157,12 +157,12 @@ return ' Return to our caller.
 '---------
 
 #org @allposmovements
-applymovement 0x1 @professoroakallpositions ' Move Oak to the entrance of the lab.
+applymovement 0xP @professoroakallpositions ' Move Oak to the entrance of the lab.
 applymovement 0xFF @playerallpositions  ' Move Player behind Oak at the entrance of the lab.
 waitmovement 0x0
 setdooropened 0x6 0x6 ' Open lab door.
 doorchange ' Change it in game.
-applymovement 0x1 @oakentersdoor ' Oak walks into door.
+applymovement 0xP @oakentersdoor ' Oak walks into door.
 applymovement 0xFF @playerentersdoor ' Player walks into door.
 waitmovement 0x0
 setdoorclosed 0x6 0x6 ' Close lab door.

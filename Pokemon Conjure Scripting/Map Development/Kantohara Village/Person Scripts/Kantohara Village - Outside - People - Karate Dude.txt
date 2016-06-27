@@ -50,7 +50,7 @@ end
 
 #org @messageprep1
 msgbox @message1 0x6
-applymovement 0x3 @facedown
+applymovement 0xP @facedown
 waitmovement 0x0
 return
 
@@ -60,7 +60,7 @@ return
 
 #org @messageprep2
 msgbox @message2 0x6
-applymovement 0x3 @faceright
+applymovement 0xP @faceright
 waitmovement 0x0
 return
 
@@ -70,7 +70,7 @@ return
 
 #org @messageprep3
 msgbox @message3 0x6
-applymovement 0x3 @facedown
+applymovement 0xP @facedown
 waitmovement 0x0
 return
 
