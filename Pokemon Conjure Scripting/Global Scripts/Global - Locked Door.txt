@@ -1,0 +1,34 @@
+'This is a global script for displaying a message about locked doors.
+'This can be useful for maps where one doesn't want to develop everything in a building yet, but also wants to make a release.
+'---------
+' Script Start
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @main
+msgbox @lockeddoor 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @lockeddoor
+= It seems the door is locked...
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------
