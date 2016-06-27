@@ -10,7 +10,27 @@
 '---------
 
 #org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
+checkflag 0xC01
+if 0x1 goto @checkifgavereward
 call @randommessagesystem ' Calling the system here.
+release
+end
+
+#org @checkifgavereward
+checkflag 0xA03
+if 0x0 goto @givereward
+call @randommessagesystem
+release
+end
+
+#org @givereward
+lock
+faceplayer
+msgbox @youfoundthem 0x6
+givemoney 0xEA60 0x00
+setflag 0xA03
+applymovement 0xP @faceleft
+waitmovement 0x0
 release
 end
 
@@ -52,7 +72,7 @@ end
 lock
 faceplayer
 msgbox @message1 0x6
-applymovement 0x1 @faceleft
+applymovement 0xP @faceleft
 waitmovement 0x0
 return
 
@@ -89,6 +109,9 @@ return
 
 #org @message3
 = The man looks deeply lost in\nthought.\pBest to leave him alone.
+
+#org @youfoundthem
+= You found the theif who stole\nfrom me a few months ago?\pThank you, here is a nice little\nreward.\p60k should suffice I think.
 
 '---------
 ' Strings End
