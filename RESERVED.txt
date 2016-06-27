@@ -55,6 +55,8 @@ This script is used on dressers in peoples homes to give them a place to sleep.
 0x11FFEE0 is a special offset.
 It is used for the global newspaper script.
 Just says how the news is terrible, but this can be changed to a new pointer for extened new if we so wish.
+0x11FFEA0 is a special offset.
+It is used to display a message saying a door is locked.
 
 
 
@@ -72,9 +74,11 @@ Reserved Flags:
 0x903 - Reserved for removing Oak at Pallet Town. Evil Version.
 0x904 - Reserved for showing Kol at Route 1.
 0xC00 - Reserved after Oak gives Pokedex.
+0xC01 - Reserved for the theiving Aide event in Oaks Lab. After talking to him and then talking to verne, the player gets cash.
 0xA00 - Reserved for walking Aide. Gives potions after getting Pokedex from oak.
 0xA01 - Reserved for Pokeball on Route 1.
-0xA02 - Reserved for Town Map in Kantohara
+0xA02 - Reserved for Town Map in Kantohara.
+0xA03 - Reserved for Verne giving cash in theiving Aide event.
 
 
 
