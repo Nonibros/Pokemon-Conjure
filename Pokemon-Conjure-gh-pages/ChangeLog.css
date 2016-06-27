@@ -22,11 +22,11 @@ div.links ul {
 
 div.links a {
 	color: #FFFFFF;
-	font-size: .5em;
+	font-size: .85em;
 }
 
 div.links ul li {
-	line-height: .5em;
+	line-height: .85em;
 	float: left;
 	padding: 0 1em 1em 0;
 }
@@ -254,7 +254,7 @@ footer li {
 }
 
 .details {
-	background-color: #2C66B8;
+	background-color: #5C0515;
 }
 
 .details article {
@@ -271,14 +271,14 @@ footer li {
 }
 
 .details p a {
-	color: #A3CFFF;
+	color: #EFAF33;
 	text-decoration: underline;
 }
 
 .details h2 {
-	background-color: #4A7CC2;
-	border-bottom: solid 0.104em #7198C1;
-	border-top: solid 0.104em #7198C1;
+	background-color: #111111;
+	border-bottom: solid 0.104em #FF0000;
+	border-top: solid 0.104em #FF0000;
 	-webkit-box-shadow: 0 0 0.8333em rgba(0, 0, 0, 0.4);
 	-moz-box-shadow: 0 0 0.8333em rgba(0, 0, 0, 0.4);
 	box-shadow: 0 0 0.8333em rgba(0, 0, 0, 0.4);

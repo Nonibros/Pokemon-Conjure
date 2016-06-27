@@ -65,7 +65,7 @@ patch it to a clean rom. The rest of the patches will be independent, that is
 you can patch ANY of them to the 0.0.1 patch and play.
 
 ### Note
-- The only time we change the X in X.Y.Z is when something REALLY major happens.
+- The only time we change the X in X.Y.Z in our version number is when something REALLY major happens.
 This can be either a huge overall graphics improvement, or the addition of some major
 ASM Code that changes everything. We may also use this for REALLY major events in game
 where we feel a break point is needed.
