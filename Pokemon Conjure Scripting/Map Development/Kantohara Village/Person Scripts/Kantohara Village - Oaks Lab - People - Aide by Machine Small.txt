@@ -1,0 +1,98 @@
+'Script for the Aide by the smaller machine in Oak's lab.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
+lock
+faceplayer
+call @randommessagesystem ' Calling the system here.
+applymovement 0xP @faceup
+waitmovement 0x0
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Random Message System
+'---------
+
+#org @randommessagesystem ' We are picking a random number here. What ever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @messageprep1
+compare 0x800D 0x1
+if 0x1 goto @messageprep2
+goto @messageprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Random Message System End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @messageprep1
+msgbox @message1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @messageprep2
+msgbox @message2 0x6
+return
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @message1
+= This little machine believe it or\nnot, is the fastest machine here\land is used for only the highest\lmath.
+
+#org @message2
+= I'm so glad we worked together\n[player].
+
+'---------
+' Strings End
+'---------
+
+
+'---------
+' Movements
+'---------
+
+#org @faceup
+#raw 0x1  ' Face Up
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+'-----------
+' Script End
+'-----------

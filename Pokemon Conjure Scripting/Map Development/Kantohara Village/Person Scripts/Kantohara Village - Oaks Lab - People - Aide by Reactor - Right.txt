@@ -1,0 +1,52 @@
+'Script for the Aide by the reactor - right in Oak's lab.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
+lock
+faceplayer
+msgbox @message1 0x6
+applymovement 0xP @faceup
+waitmovement 0x0
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @message1
+= My boss is really strict...
+
+'---------
+' Strings End
+'---------
+
+
+'---------
+' Movements
+'---------
+
+#org @faceup
+#raw 0x1  ' Face Up
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+'-----------
+' Script End
+'-----------
