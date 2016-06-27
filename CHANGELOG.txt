@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Fix the first house in Thimble Town.
+- Extend thimble, as you can't see the trainer until entering the map.
 - Develop Route 2.
 - Further Develop Sanohara.
 - Add some more easter eggs. :)
@@ -21,9 +22,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Completed all of route 1. All the trainers here work well.
 
-## [1.0.1] - 2016-06-26 [PLANNED]
+## [1.0.1] - 2016-06-26
 ### Added
 - Completed all the NPC's in Professor Oaks Lab.
+- Added a nice little event between an aide in Kantohara and Verne in Thimble Town.
+
+### Fixed
+- Professor Oaks script. It had issues with saying next item instead of first item for the bad side.
+- Professor Oaks script again. He faced down instead of the direction of the player after picking up the pokedex.
+- TEMP - Fixed the first house in Thimble Town by making it locked for now.
+It seems that it DOES warp the player to the same layout as the house, because you can see Verne, but with the graphical overlay of Thimble Town.
+
+### Broken
+- Somehow the second house in Thimble broke. So, I will probably have to recreate the entire map.
 
 ## [1.0.0] - 2016-06-26
 ### Added
