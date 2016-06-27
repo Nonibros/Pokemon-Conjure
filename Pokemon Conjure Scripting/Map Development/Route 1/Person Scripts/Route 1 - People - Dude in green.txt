@@ -54,10 +54,10 @@ return
 '---------
 
 #org @malemessage1
-= Hey dude, how's it going?\nListen man the women here are\lpretty... pretty crazy that is!\lThey are totally of their rockers\ldude, go back while you can.\pYou see, I can't even get back to\nThimble Town because they keep\ltrying to battle me!\lThey say if I want to get through\lwithout a battle, I need to pay\lup!\pSigh, I'm never getting out of\nhere.
+= Hey dude, how's it going?\pListen man the women here are\npretty...\lPretty crazy that is!\pThey are totally off their\nrockers!\pDude, seriously, just go back\nwhile you can.\pYou see, I can't even get back to\nThimble Town because they keep\ltrying to battle me!\pThey say if I want to get through\nwithout a battle, I need to pay\lup!\pSigh, I'm never getting out of\nhere at this rate.
 
 #org @femalemessage1
-= Oh god, it's another female!\nI can't take this anymore!!!\pWait, you don't seem like one of\nthem, and you sure haven't asked\lme to battle...\pHmm, well be careful anyway, you\ncan't get through without a lot\lof money or strong pokemon.\pI've been stuck here for a while\nnow.\pSigh, I'm never getting out of\nhere.
+= Oh god, it's another female!\nI can't take this anymore!!!\pWait, you don't seem like one of\nthem, and you sure haven't asked\lme to battle...\pHmm, well do be careful because\nyou can't get through without a\llot of money or strong Pok\h1Bmon.\pYou see, I've been stuck here for\na while now because of them, and\lI can't get back to Thimble Town!\pSigh, I'm never getting out of\nhere at this rate.
 
 '---------
 ' Strings End
