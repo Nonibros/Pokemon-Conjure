@@ -1,0 +1,32 @@
+/* Top bar */
+div.upper-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: linear-gradient(110deg, #000000, #777777);
+}
+
+div.upper-bar li {
+    float: left;
+}
+
+div.upper-bar li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+div.upper-bar li a:hover:not(.active-link) {
+    background-color: #555555;
+}
+
+.active-link {
+    background-color: #AA2424;
+}

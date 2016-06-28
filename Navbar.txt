@@ -1,0 +1,15 @@
+This is plain text html code for the nav bar.
+
+
+  <div class="upper-bar">
+    <ul>
+        <li><a class="active-link" href="index.html">Home</a></li>
+        <li><a href="ABOUT.html">About</a></li>
+        <li><a href="CONTRIBUTIONS.html">Credits</a></li>
+        <li><a href="CHANGELOG.html">Changes</a></li>
+        <li><a href="SCREENSHOTS.html">Screenshots</a></li>
+        <li><a href="IRC.html">IRC</a></li>
+        <li><a href="http://www.pokecommunity.com/showthread.php?p=9255238">Thread</a></li>
+        <li><a href="http://pokemonconjure.tk">News Site</a></li>
+    </ul>
+  </div>
