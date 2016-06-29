@@ -13,12 +13,21 @@ If the project needs more then this, either Nonibros or Hajima will find a new s
 0x1200000 - 0x123FFFF is for general scripts.
 [Nonibros], the scripting coordinator will give out a block to people working on the project.
 
-0x1240000 - 0x1247FFF is for the flag setting script.
 IF YOU ARE NOT NONIBROS DO NOT TOUCH THIS AREA.
+0x1240000 - 0x1247FFF is a special scripting area.
 Instead, if you are working on the project, and a specific flag or variable needs to be set so someone doesn't show up at the beginning of the game, let Nonibros know.
 
-0x1248000 - 0x126FFFF is for level scripts.
-[Nonibros] will give out a block to people working on the project.
+Block 0x1240000 - 0x1241FFF is for the initial flag and varible setting script.
+
+Block 0x1242000 - 0x1242FFF is for healing scripts after being healed. This area is not to be touched.
+
+Block 0x1243000 - 0x12432FF is a table for maps to point to their healing locations.
+
+Block 0x1243300 - 0x1243FFF is for the healing locations.
+
+Block 0x1247000 - 0x12477FF is for setting good variables and flags after talking to Kol.
+
+Block 0x1247800 - 0x1247FFF is for setting evil variables and flags after talking to Kol.
 
 0x1270000 - 0x1300000 is a secondary area for general scripts.
 [Nonibros], the scripting coordinator will give out a block to people working on the project.
@@ -62,6 +71,8 @@ It is used to display a message saying a door is locked.
 
 Flag blocks:
 0x230 - Reserved for good or bad choice. NEVER CHANGE THIS.
+0x15A - Reserved for all good specific characters. Set to 1 at the beginning to shut all GOOD people OFF. 0 Leaves them on. NEVER CHANGE THIS.
+0x15B - Reserved for all evil specific characters. Set to 1 at the beginning to shut all EVIL people OFF. 0 Leaves them on. NEVER CHANGE THIS.
 0x900 - 0x9FF - Reserved for removing/showing people.
 0xA00 - 0xAFF - Reserved for giving items.
 0xC00 - 0xCFF - Reserved for special event flags.
