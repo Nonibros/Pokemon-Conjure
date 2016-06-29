@@ -1,0 +1,48 @@
+#dynamic 0xOFFSET
+'---------------
+
+#org @nap
+lockall
+textcolor 0x3
+msgbox @beforenap MSG_KEEPOPEN
+checkflag 0x828
+if 0x1 goto @gotpokes
+call @fakehealing
+msgbox @afternap MSG_KEEPOPEN
+releaseall
+end
+
+#org @gotpokes
+call @healing
+msgbox @afternapwithpokemon MSG_KEEPOPEN
+releaseall
+end
+
+'---------------
+#org @healing
+fadescreen 0x1
+fanfare 0x100
+waitfanfare
+special 0x0
+fadescreen 0x0
+return
+
+#org @fakehealing
+fadescreen 0x1
+fanfare 0x100
+waitfanfare
+fadescreen 0x0
+return
+
+
+'---------
+' Strings
+'---------
+#org @beforenap
+= Time for a nap!
+
+#org @afternapwithpokemon
+= That was a fantastic rest!\pBoth you and your Pok\h1Bmon feel\nmuch better after that nap!\pWell, It's time to go now!
+
+#org @afternap
+= That was a fantastic rest!\pYou feel so much better from that\nnap!\pWell, It's time to go now!
