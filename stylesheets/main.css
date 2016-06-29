@@ -262,9 +262,20 @@ body {
         line-height: 1.5;
 }
 
+/* Navbar Section Start */
+
+.details-navbar {
+	background-color: #000000;
+        background-image: linear-gradient(110deg, #008800, #000088);
+
+}
+
+/* Navbar Section End */
+
 /* Screenshots Section Start */
 
 .details-screenshots {
+  word-wrap: normal;
 	background-color: #35257C;
 }
 
