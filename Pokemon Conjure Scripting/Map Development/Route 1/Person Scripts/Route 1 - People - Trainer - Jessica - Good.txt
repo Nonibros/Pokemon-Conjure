@@ -1,0 +1,113 @@
+'This is for Jessica, the final trainer on the path on Route 1.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0x14 0x0 @firstbattlegreeting @battlewin ' Regular trainer battle here.
+special2 0x800D 0x39 ' If we have already defeated the trainer, we will check if we have used the VS Seeker.
+compare 0x800D 0x1 ' If that's a yes, we will go to a secondary battle.
+if 0x1 goto @secondbattle
+checkgender ' Check the players gender to display different after battle messages.
+compare 0x800D 0x0 ' If male.
+if 0x1 call @maleafterbattle
+compare 0x800D 0x1 ' If female.
+if 0x1 call @femaleafterbattle
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Male Message
+'---------
+
+#org @maleafterbattle ' After battle message for the male.
+msgbox @malemessage 0x6 ' Males message.
+applymovement 0xP @happyface ' A nice happy face here for the male.
+waitmovement 0x0 ' Wait until movements are complete.
+return ' Return to caller.
+
+'---------
+' Female Message
+'---------
+
+#org @femaleafterbattle ' After battle message for the female.
+msgbox @femalemessage 0x6 ' Females message.
+return ' Return to caller.
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Rematch Function
+'---------
+
+#org @secondbattle
+trainerbattle 0x5 0x14 0x0 @secondbattlegreeting @battlewin
+msgbox @secondbattleend 0x6 ' Rematch battle message.
+end
+
+'---------
+' Rematch Function End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @firstbattlegreeting
+= I'm both the boss and the most\nbeautiful of the legendary flower\lgirls!\pSince you defeated the rest of\nthe girls, clearly you don't want\lto pay up.\pThat means you want to fight!\nGet ready for battle!
+
+#org @secondbattlegreeting
+= You must've traveled far and wide.\pI guess we'll battle again!
+
+#org @battlewin
+= You won???
+
+#org @malemessage
+= You seem really kind hearted, and\nyou're handsome too.\pBoth qualities really attract me.
+
+#org @femalemessage
+= You're a kind hearted soul, I can\njust tell.
+
+#org @secondbattleend
+= I've trained very hard, so It's\nhard to believe you beat me!
+
+'---------
+' Strings End
+'---------
+
+
+'---------
+' Movements
+'---------
+
+#org @happyface
+#raw 0x66 ' Happy (^_^)
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+
+'-----------
+' Script End
+'-----------

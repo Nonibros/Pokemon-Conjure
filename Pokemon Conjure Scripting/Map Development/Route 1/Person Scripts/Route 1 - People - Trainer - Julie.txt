@@ -1,0 +1,90 @@
+'This is for Julie, the first trainer on Route 1
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0x10 0x0 @firstbattlegreeting @battlewin ' Regular trainer battle here.
+checkgender ' Check the players gender to display different after battle messages.
+compare 0x800D 0x0 ' If male.
+if 0x1 call @maleafterbattle
+compare 0x800D 0x1 ' If female.
+if 0x1 call @femaleafterbattle
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Male Message
+'---------
+
+#org @maleafterbattle ' After battle message for the male.
+msgbox @malemessage 0x6 ' Males message.
+applymovement 0xP @happyface ' A nice happy face here for the male.
+waitmovement 0x0 ' Wait until movements are complete.
+return ' Return to caller.
+
+'---------
+' Female Message
+'---------
+
+#org @femaleafterbattle ' After battle message for the female.
+msgbox @femalemessage 0x6 ' Females message.
+return ' Return to caller.
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @firstbattlegreeting
+= Hello there!\pI'm one of the 5 legendary flower\ngirls!\pDo you have [$]100,000,000?\pNo?\pThen we have to battle!
+
+#org @battlewin
+= Pikachu!!!!
+
+#org @malemessage
+= I can't believe you beat me.\pThe other girls are stronger\nthough, so be warned, handsome.
+
+#org @femalemessage
+= I can't believe you beat me.\pThe other girls are stronger\nthough, so be warned.
+
+'---------
+' Strings End
+'---------
+
+
+'---------
+' Movements
+'---------
+
+#org @happyface
+#raw 0x66 ' Happy (^_^)
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+
+'-----------
+' Script End
+'-----------

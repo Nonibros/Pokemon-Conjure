@@ -1,0 +1,91 @@
+'This is for Jacie, the trainer by the big tree, on Route 1
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0x11 0x0 @firstbattlegreeting @battlewin ' Regular trainer battle here.
+checkgender ' Check the players gender to display different after battle messages.
+compare 0x800D 0x0 ' If male.
+if 0x1 call @maleafterbattle
+compare 0x800D 0x1 ' If female.
+if 0x1 call @femaleafterbattle
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Male Message
+'---------
+
+#org @maleafterbattle ' After battle message for the male.
+msgbox @malemessage 0x6 ' Males message.
+applymovement 0xP @happyface ' A nice happy face here for the male.
+waitmovement 0x0 ' Wait until movements are complete.
+return ' Return to caller.
+
+'---------
+' Female Message
+'---------
+
+#org @femaleafterbattle ' After battle message for the female.
+msgbox @femalemessage 0x6 ' Females message.
+return ' Return to caller.
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @firstbattlegreeting
+= Hi I'm Jacie!!!\pSeems like you won't have\n[$]100,000,000 on you, so we have\lto battle!
+
+#org @battlewin
+= My darling Mareep!
+
+#org @malemessage
+= You're so strong, handsome.
+
+#org @femalemessage
+= Somehow you beat me.
+
+'---------
+' Strings End
+'---------
+
+
+'---------
+' Movements
+'---------
+
+#org @happyface
+#raw 0x66 ' Happy (^_^)
+#raw 0xFE ' End of Movements
+
+
+'---------
+' Movements End
+'---------
+
+
+
+'-----------
+' Script End
+'-----------

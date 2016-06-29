@@ -1,0 +1,43 @@
+'This is for Janie, the trainer by the pokeball, on Route 1.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0x12 0x0 @firstbattlegreeting @battlewin ' Regular trainer battle here.
+msgbox @afterbattlemessage 0x6 ' After battle message.
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @firstbattlegreeting
+= I'm here on guard duty.\pI know you don't have\n[$]100,000,000, so we will\lbattle.
+
+#org @battlewin
+= Wow, I lost...
+
+#org @afterbattlemessage
+= Sigh.\pThe other girls are so peppy.
+
+'---------
+' Strings End
+'---------
+
+
+
+'-----------
+' Script End
+'-----------
