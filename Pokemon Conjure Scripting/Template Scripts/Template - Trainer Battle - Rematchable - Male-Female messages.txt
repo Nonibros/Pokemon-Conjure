@@ -1,0 +1,115 @@
+'This is a template script for a pokemon trainer.
+'I have added the rematch special to this script.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0xTT 0x0 @firstbattlegreeting @battlewin ' Regular trainer battle here.
+special2 0x800D 0x39 ' If we have already defeated the trainer, we will check if we have used the VS Seeker.
+compare 0x800D 0x1 ' If that's a yes, we will go to a secondary battle.
+if 0x1 goto @secondbattle
+checkgender ' Check the players gender to display different after battle messages.
+compare 0x800D 0x0 ' If male.
+if 0x1 call @maleafterbattle
+compare 0x800D 0x1 ' If female.
+if 0x1 call @femaleafterbattle
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Messages
+'---------
+
+'---------
+' Male Message
+'---------
+
+#org @maleafterbattle ' After battle message for the male.
+msgbox @malemessage 0x6 ' Males message.
+applymovement 0xP @happyface ' A nice happy face here for the male.
+waitmovement 0x0 ' Wait until movements are complete.
+return ' Return to caller.
+
+'---------
+' Female Message
+'---------
+
+#org @femaleafterbattle ' After battle message for the female.
+msgbox @femalemessage 0x6 ' Females message.
+return ' Return to caller.
+
+'---------
+' Messages End
+'---------
+
+
+'---------
+' Rematch Function
+'---------
+
+#org @secondbattle
+trainerbattle 0x5 0xTT 0x0 @secondbattlegreeting @battlewin
+msgbox @secondbattleend 0x6 ' Rematch battle message.
+end
+
+'---------
+' Rematch Function End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @firstbattlegreeting
+= First time meeting you.\nLets do battle.
+
+#org @secondbattlegreeting
+= A second time meeting you.\nAnother battle then.
+
+#org @battlewin
+= You won the battle.
+
+#org @malemessage
+= Oh look, you're male.
+
+#org @femalemessage
+= You're a girl.
+
+#org @secondbattleend
+= You defeated me again?
+
+'---------
+' Strings End
+'---------
+
+
+'---------
+' Movements
+'---------
+
+#org @happyface
+#raw 0x66 ' Happy (^_^)
+#raw 0x1  ' Face Up
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+
+'-----------
+' Script End
+'-----------
