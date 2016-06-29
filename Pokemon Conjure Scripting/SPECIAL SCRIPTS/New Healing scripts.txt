@@ -1,0 +1,89 @@
+'This script is for regular Non-pokecenter healing after blacking out.
+'Currently just doing bed.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0x1242000
+
+
+'-----------
+' Pointer
+'-----------
+
+#org 0x1A8DD8
+goto @nap
+end
+
+'-----------
+' Pointer End
+'-----------
+
+'---------
+' Main Function
+'---------
+
+#org @nap
+lockall
+textcolor 0x3
+applymovement 0xFF @facedown ' We face down towards the bed.
+waitmovement 0x0 ' Wait until movements are complete.
+msgbox @beforenap MSG_KEEPOPEN
+call @healing ' Call healing function
+msgbox @afternap MSG_KEEPOPEN
+fadedefault
+releaseall
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Healing Function
+'---------
+
+#org @healing
+fadescreen 0x1
+fanfare 0x100
+waitfanfare
+special 0x0
+fadescreen 0x0
+return
+
+'---------
+' Healing Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @beforenap
+= You finally make to to the house\nafter running from the battle.\pYou're very exhausted.\pWell, maybe a nap will help...
+
+#org @afternap
+= That was a fantastic rest!\pBoth you and your Pok\h1Bmon are\nmuch better from that nap!\pWell, It's time to go now!
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Movements
+'---------
+
+#org @facedown
+#raw 0x0  ' Face Down
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+
+'-----------
+' Script End
+'-----------

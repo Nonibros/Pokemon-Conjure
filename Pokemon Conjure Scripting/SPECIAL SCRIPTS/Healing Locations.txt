@@ -1,0 +1,28 @@
+' This is a seperate script that should be compiled after adding to it.
+' One must erase anything from 0x1243300 - 0x1243FFF before compiling.
+' It's purpose is to give a central location for maps that will be adding healing locations.
+'-----------
+' Script Start
+'-----------
+#dynamic 0x1243300
+
+'---------
+' Main Function
+'---------
+
+#org @healingplayerhouse
+sethealingplace 0x1
+setvar 0x405a 0x0104 ' 01 = map /  04 = bank
+setvar 0x405b 0x0002 ' 02 = x coordinate of player
+setvar 0x405c 0x0005 ' 05 = y coordinate of player
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'-----------
+' Script End
+'-----------
+
