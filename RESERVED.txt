@@ -28,6 +28,9 @@ Block 0x1243300 - 0x1243FFF is for the healing locations.
 Block 0x1247000 - 0x12477FF is for setting good variables and flags after talking to Kol.
 
 Block 0x1247800 - 0x1247FFF is for setting evil variables and flags after talking to Kol.
+ 
+0x1250000 - 0x126FFFF is for level scripts.
+[Nonibros] will give out a block to people working on the project.
 
 0x1270000 - 0x1300000 is a secondary area for general scripts.
 [Nonibros], the scripting coordinator will give out a block to people working on the project.
