@@ -30,7 +30,7 @@ end
 '---------
 
 #org @goodside
-call @setvariablesgood ' Sets our variables to the good side.
+call 0x9247000 ' Sets our variables to the good side.
 applymovement 0x1 @exclaim ' NPC makes an exclamation mark before facing the player.
 waitmovement 0x0 ' wait until he is finished.
 clearflag 0x230 ' Sets the player to good. Not needed.
@@ -42,7 +42,7 @@ warp 0x4 0x1 0xFF 0x2 0x5 ' Home base warp.
 end
 
 #org @evilside
-call @setvariablesbad ' Sets our variables to the evil side.
+call 0x9247800 ' Sets our variables to the evil side.
 setflag 0x230 ' Sets the player to evil.
 faceplayer
 msgbox @evilsidemessage 0x6
@@ -51,21 +51,25 @@ warp 0x4 0x1 0xFF 0x2 0x5 ' Home base warp.
 end
 
 #org @setvariablesgood ' These allow only good events to happen. Bad ones never will.
-setvar 0x5004 0x1
+setvar 0x5004 0x1 ' Good to yes.
 setvar 0x5005 0x1
 setvar 0x5006 0x1
-setvar 0x5007 0x0
+setvar 0x5007 0x0 ' Evil to no.
 setvar 0x5008 0x0
 setvar 0x5009 0x0
+clearflag 0x15A ' Keep all good NPCs
+setflag 0x15B ' Remove all evil NPCs.
 return
 
 #org @setvariablesbad ' These allow only bad events to happen. Good ones never will.
-setvar 0x5004 0x0
+setvar 0x5004 0x0 ' Good to no.
 setvar 0x5005 0x0
 setvar 0x5006 0x0
-setvar 0x5007 0x1
+setvar 0x5007 0x1 ' Evil to yes.
 setvar 0x5008 0x1
 setvar 0x5009 0x1
+setflag 0x15A ' Remove all good NPCs
+cleaflag 0x15B ' Keep all evil NPCs.
 return
 
 '---------
