@@ -25,6 +25,8 @@ Block 0x1243000 - 0x12432FF is a table for maps to point to their healing locati
 
 Block 0x1243300 - 0x1243FFF is for the healing locations.
 
+Block 0x1244000 - 0x1244FFF is for the masterball games.
+
 Block 0x1247000 - 0x12477FF is for setting good variables and flags after talking to Kol.
 
 Block 0x1247800 - 0x1247FFF is for setting evil variables and flags after talking to Kol.
@@ -79,6 +81,16 @@ Flag blocks:
 0x900 - 0x9FF - Reserved for removing/showing people.
 0xA00 - 0xAFF - Reserved for giving items.
 0xC00 - 0xCFF - Reserved for special event flags.
+
+
+
+0x1100 - 0x110F - Reserved for masterball game final object flags.
+0x1100 - Reserved for finishing the first masterball game.
+0x1101 - Not yet used.
+
+0x1110 - 0x111F - Reserved for masterball game showing/hiding masterball giver.
+0x1110 - Reserved for showing, hiding masterball giver - game 1.
+0x1111 - Not yet used.
 
 Reserved Flags:
 0x230 - Reserved for good or bad choice. NEVER CHANGE THIS.
@@ -144,6 +156,10 @@ Reserved Variables:
 0x5009 0x0 - This is a very special reservation. When this = 0, NO good scripts will run. None at all. When we choose our side, this will stay 0 if we choose the good, and become 1 if we choose the bad.
 0x5009 0x1 - NOT USED YET!
 
+0x5100 - 0x510F - Reserved for master ball game stored flags.
+0x5100 - This is for the first game on Route 2.
+0x5101 - NOT USED YET!
+
 This is a script for the very first map. Only Nonibros or someone very trusted can use this.
 It sets all necessary flags to 1. Useful for hiding NPCs, like professor oak in his lab, at the very beginning of the game.
 Script:
@@ -162,6 +178,12 @@ Script:
 setflag 0x902 ' Oaks lab Person ID.
 setflag 0x903 ' Oak Evil Person ID.
 setflag 0x904 ' Kol Route 1 Person ID.
+setflag 0x1110 ' Master Ball game 1 Flag.
+setflag 0x1111 ' Master Ball game 2 Flag.
+setflag 0x1112 ' Master Ball game 3 Flag.
+setflag 0x1113 ' Master Ball game 4 Flag.
+setflag 0x1114 ' Master Ball game 5 Flag.
+setflag 0x1115 ' Master Ball game 6 Flag.
 end
 
 '-----------
