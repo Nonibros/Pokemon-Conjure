@@ -12,8 +12,8 @@
 #org @masterball
 checkflag 0x1100 ' Checks whether we have reached the final object in the order script.
 if 0x1 goto @mainfunction ' If we have, just continue on. If not, set up the variables and check.
-setvar 0x4002 0X3 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
-setvar 0x4003 0X4 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
+setvar 0x4002 0X4 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
+setvar 0x4003 0X5 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
 call 0X9244000 ' Call the order checking script offset.
 goto @mainfunction ' Continue on.
 
@@ -99,110 +99,6 @@ return
 ' Neutral Messages End
 '---------
 
-'---------
-' Male Random Message System
-'---------
-
-#org @malerandom ' We are picking a random number here for the male system. Whatever number is picked is the message to display.
-random 0x03
-compare 0x800D 0x0
-if 0x1 goto @maleprep1
-compare 0x800D 0x1
-if 0x1 goto @maleprep2
-compare 0x800D 0x1
-if 0x1 goto @maleprep3
-goto @maleprep3 ' If there is a glitch, this will auto go to the last message.
-end
-
-'---------
-' Male Random Message System End
-'---------
-
-
-'---------
-' Male Messages
-'---------
-
-'---------
-' Message 1
-'---------
-
-#org @maleprep1
-msgbox @malemessage1 0x6
-return
-
-'---------
-' Message 2
-'---------
-
-#org @maleprep2
-msgbox @malemessage2 0x6
-return
-
-'---------
-' Message 3
-'---------
-
-#org @maleprep3
-msgbox @malemessage3 0x6
-return
-
-'---------
-' Male Messages End
-'---------
-
-'---------
-' Female Random Message System
-'---------
-
-#org @femalerandom ' We are picking a random number here for the female system. Whatever number is picked is the message to display.
-random 0x03
-compare 0x800D 0x0
-if 0x1 goto @femaleprep1
-compare 0x800D 0x1
-if 0x1 goto @femaleprep2
-compare 0x800D 0x2
-if 0x1 goto @femaleprep3
-goto @femaleprep3 ' If there is a glitch, this will auto go to the last message.
-end
-
-'---------
-' Female Random Message System End
-'---------
-
-
-'---------
-' Female Messages
-'---------
-
-'---------
-' Message 1
-'---------
-
-#org @femaleprep1
-msgbox @femalemessage1 0x6
-return
-
-'---------
-' Message 2
-'---------
-
-#org @femaleprep2
-msgbox @femalemessage2 0x6
-return
-
-'---------
-' Message 3
-'---------
-
-#org @femaleprep3
-msgbox @femalemessage3 0x6
-return
-
-'---------
-' Female Messages End
-'---------
-
 
 '---------
 ' Strings
@@ -216,24 +112,6 @@ return
 
 #org @neutralmessage3
 = I love managing this area!
-
-#org @malemessage1
-= Hello sir, I'm watching over\nthe rest stop right now.
-
-#org @malemessage2
-= Yawn, I sure am tired mate.
-
-#org @malemessage3
-= I really like my job.\nHow about you?
-
-#org @femalemessage1
-= You smell like the flowers in\nKantohara...
-
-#org @femalemessage2
-= It can get tiring managing public\nareas, but I do love it.
-
-#org @femalemessage3
-= Yawn... I am tired.
 
 '---------
 ' Strings End

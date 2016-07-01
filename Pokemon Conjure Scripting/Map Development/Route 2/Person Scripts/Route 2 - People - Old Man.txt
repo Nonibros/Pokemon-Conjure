@@ -1,4 +1,5 @@
-' This is for the camper in the rest stop on Route 2.
+' This is for the old man in the rest stop on Route 2.
+' I am implementing a new system here where there is a random chance for a neutral message system, or a gender based system. This should make the game more fluid.
 ' Copyright @2016 Nonibros.
 '-----------
 ' Script Start
@@ -12,8 +13,8 @@
 #org @masterball
 checkflag 0x1100 ' Checks whether we have reached the final object in the order script.
 if 0x1 goto @mainfunction ' If we have, just continue on. If not, set up the variables and check.
-setvar 0x4002 0X3 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
-setvar 0x4003 0X4 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
+setvar 0x4002 0X0 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
+setvar 0x4003 0X1 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
 call 0X9244000 ' Call the order checking script offset.
 goto @mainfunction ' Continue on.
 
@@ -57,9 +58,7 @@ compare 0x800D 0x0
 if 0x1 goto @neutralprep1
 compare 0x800D 0x1
 if 0x1 goto @neutralprep2
-compare 0x800D 0x2
-if 0x1 goto @neutralprep3
-goto @neutralprep3 ' If there is a glitch, this will auto go to the last message.
+goto @neutralprep2 ' If there is a glitch, this will auto go to the last message.
 end
 
 '---------
@@ -85,14 +84,6 @@ return
 
 #org @neutralprep2
 msgbox @neutralmessage2 0x6
-return
-
-'---------
-' Message 3
-'---------
-
-#org @neutralprep3
-msgbox @neutralmessage3 0x6
 return
 
 '---------
@@ -161,9 +152,7 @@ compare 0x800D 0x0
 if 0x1 goto @femaleprep1
 compare 0x800D 0x1
 if 0x1 goto @femaleprep2
-compare 0x800D 0x2
-if 0x1 goto @femaleprep3
-goto @femaleprep3 ' If there is a glitch, this will auto go to the last message.
+goto @femaleprep2 ' If there is a glitch, this will auto go to the last message.
 end
 
 '---------
@@ -192,14 +181,6 @@ msgbox @femalemessage2 0x6
 return
 
 '---------
-' Message 3
-'---------
-
-#org @femaleprep3
-msgbox @femalemessage3 0x6
-return
-
-'---------
 ' Female Messages End
 '---------
 
@@ -209,31 +190,25 @@ return
 '---------
 
 #org @neutralmessage1
-= I used to work in Johto's\nNational Park.\pMan, what a park.
+= I love taking walks from Sanohara to Kantohara sometimes.
 
 #org @neutralmessage2
-= I'm the one in charge of this\narea.
-
-#org @neutralmessage3
-= I love managing this area!
+= I really love this area.\pThe air here is so clean and\nfresh.
 
 #org @malemessage1
-= Hello sir, I'm watching over\nthe rest stop right now.
+= Hello young man.\pListen, be careful choosing your\nmate when you grow older.\pI have a good wife, but she\ndoesn't understand anything about\ltools...
 
 #org @malemessage2
-= Yawn, I sure am tired mate.
+= I used to be a great Pok\h1Bmon\ltrainer back in the day, but that\lwas a very long time ago.
 
 #org @malemessage3
-= I really like my job.\nHow about you?
+= I love working in my shed, but my\nwife always complains and tells\lme to stop fooling around and\lhelp her with the cooking.\pI don't know anything about\ncooking, haven't wanted to know\lanything about it, and I've been\ldoing just fine for over 50 years\lthank you very much.
 
 #org @femalemessage1
-= You smell like the flowers in\nKantohara...
+= Hello young lady.\nPleasant day isn't it?
 
 #org @femalemessage2
-= It can get tiring managing public\nareas, but I do love it.
-
-#org @femalemessage3
-= Yawn... I am tired.
+= I love taking my afternoon naps.\nI might move along soon, but it\lis quite nice here.
 
 '---------
 ' Strings End

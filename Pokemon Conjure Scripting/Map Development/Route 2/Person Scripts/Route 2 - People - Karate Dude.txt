@@ -29,11 +29,11 @@ lock
 faceplayer
 random 0x02 ' We will decide on either the neutral message system, or a gender specific system.
 compare 0x800D 0x0
-if 0x1 goto @neutralrandom
+if 0x1 goto @neutralcaller ' Go to the neutral function caller.
 checkgender
-compare 0x800D 0x0
+compare 0x800D 0x0 ' Go to the male random message system.
 if 0x1 call @malerandom
-compare 0x800D 0x1
+compare 0x800D 0x1 ' Go to the female random message system.
 if 0x1 call @femalerandom
 release
 end
@@ -45,6 +45,11 @@ end
 '---------
 ' Neutral Random Message System
 '---------
+
+#org @neutralcaller ' This calls the neutral random function and then releases the player when finished.
+call @neutralrandom
+release
+end
 
 #org @neutralrandom ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
 random 0x03
