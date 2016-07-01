@@ -323,7 +323,7 @@ end
 = Obtained the [buffer2]!
 
 #org @putawayballs
-= [player] put the Pokéballs away\nin the Bags's Items Pocket.
+= [player] put the Pokéballs away\nin the Bag's Balls Pocket.
 
 #org @dowellonyouradventuregood
 = Do well on your adventure and\nmake me proud, [player]!
