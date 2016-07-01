@@ -1,0 +1,49 @@
+' This is for a fun little side game to obtain a master ball.
+' In short, it will check whether certain variables for specific people are activated or not, and activates these in an order.
+' So, one must talk to one object, another, etc etc, in a SPECIFIED order.
+' A hint can be placed somewhere detailing, in a type of code or whatever, the order.
+' Copyright @2016 Nonibros.
+'-----------
+' Script Start
+'-----------
+#dynamic 0x1244000
+
+'---------
+' Main Function
+'---------
+
+' This portion will run a universal script that will check your stored variable for the object or person, the checking variable against it, and if stored = check, then set the stored varible to next variable.
+' The Script:
+
+#org @checkmasterballorder
+compare 0x5100 0x8 ' We need to check whether we are in the final item of the masterball check. Final var is replace with the last object you want. Say you have a game with 6 people. 0x(finalvar) would = 5.
+if 0x1 goto @finalflag ' If we are at the final object, we need to set a specific flag to say that we are in the final version.
+compare 0x5100 0x4002 ' We then compare our STORED variable to the checking variable.
+if 0x1 goto @nextvar ' If they are =, we will change stored variable + 1.
+compare 0x5100 0x4003 ' Compare our STORED variable to the next variable to see if we've talked to this person right before, so we don't reset.
+if 0x1 goto @nextvar ' Keep stored variable the same.
+goto @resetvar ' If they are not =, reset stored variable to 0.
+end
+
+end
+
+#org @finalflag ' Here we set our final flag. When we come back to the script that called this, if this flag is set to true, we should run a custom script.
+setflag 0x1100
+return
+
+#org @nextvar
+setvar 0x5100 0x4003 ' Since we have passed the check, we store into stored variable our next checking variable, which is the object number.
+return
+
+#org @resetvar
+setvar 0x5100 0x0 ' Reset stored variable to 0, return to the script.
+return
+
+'---------
+' Main Function End
+'---------
+
+
+'-----------
+' Script End
+'-----------

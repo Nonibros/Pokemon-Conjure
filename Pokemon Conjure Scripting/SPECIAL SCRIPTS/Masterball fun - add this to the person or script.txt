@@ -1,0 +1,66 @@
+' This is for the master ball game.
+' This itself is not a stand alone script. You instead add this to a person or signpost or whatever to call the masterball game object order checking function.
+' Copyright @2016 Nonibros.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xNOTASTANDALONESCRIPT
+
+'---------
+' Main Function
+'---------
+
+#org @callingscript ' This is the part that calls the order checking script. INSERT THIS INTO A SCRIPT TO CHECK THE OBJECT.
+' This portion sets a checking variable to check the current order of the items we have entered.
+' We change 0x(check)x to our temporary checking variable. This is = to the objects place in line, let's for example use the 5th object, - 1. so 5th object - 1 = 4.
+' We set 0x(next)x to = the objects place in line. I.e 5th object.
+' 0x(final)x is the flag set to the particular version of the masterball game you are playing. It is set once the game is complete, i.e. you have talked to the last object. We use this here both to prevent unnecessary execution of the other script and for the last object, to play a function.
+' The Script:
+
+checkflag 0xfinalx ' Checks whether we have reached the final object in the order script.
+if 0x1 goto @continuex ' If we have, just continue on. If not, set up the variables and check.
+setvar 0xcheckx 0xobj-1 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
+setvar 0xnextx 0xobj 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
+call @checkmasterballorder ' Call the order checking script offset.
+goto @continuex ' Continue on.
+end ' We end here.
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Final Object
+'---------
+
+#org @continuex ' This is a sample script for the final object that checks whether the final object flag has been finished or not. If so, it will check that.
+checkflag 0xfinishedx ' Checks whether we have done the event after setting finalx
+if 0x0 goto @continue2x ' If we have NOT, we will do that event.
+msgbox @eventfinished 0x6  ' A message if we have finished the event.
+release ' Otherwise the player will be released.
+end
+
+#org @continue2x
+checkflag 0xfinalx ' Checks whether we have reached the final object in the order script.
+if 0x1 goto @continue3x ' If we have, just continue on. If not, set up the variables and check.
+msgbox @noeventmessage 0x6 ' A message if the event will not activate.
+
+
+#org @continue2x
+checkflag 0xfinalx ' Checks whether we have reached the final object in the order script.
+if 0x1 goto @continue3x ' If we have, just continue on. If not, set up the variables and check.
+msgbox @eventstart 0x6 ' A message saying that we will now activate the event.
+CODE HERE
+setflag 0xfinishedx ' We now tell the game that for this NPC, we have finished the game.
+setflag 0xplayerid ' If you want, you can remove the NPC after this event.
+release ' Afterward, the player will be released.
+end
+
+'---------
+' Final Object End
+'---------
+
+
+'-----------
+' Script End
+'-----------
