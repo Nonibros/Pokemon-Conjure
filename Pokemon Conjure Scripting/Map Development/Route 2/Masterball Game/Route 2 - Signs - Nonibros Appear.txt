@@ -1,0 +1,117 @@
+' This is for the middle of the rug in the rest stop on Route 2.
+' Copyright @2016 Nonibros.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Master Ball Game Function
+'---------
+#org @masterball
+checkflag 0x1100 ' Checks whether we have reached the final object in the order script.
+if 0x1 goto @ending ' If we have, stop the script. If not, set up the variables and check.
+compare 0x5100 0x8 ' We need to check whether we are in the final item of the masterball check. Final var is replace with the last object you want - 1. Say you have a game with 6 people. 0x(finalvar) would = 5.
+if 0x1 goto @finalflagset ' If we are at the final object, we need to set a specific flag to say that we are in the final version.
+call @resetvar ' Reset the variable to 0.
+end ' Simply end the script, since we are talking to the rug.
+
+#org @ending ' This ends the script.
+end
+
+#org @finalflagset ' Here we set our final flag. When we come back to the script that called this, if this flag is set to true, we should run a custom script.
+setflag 0x1100 ' Set our final flag to 1.
+setvar 0x5100 0xFF ' I just felt like adding a termination to the variable.
+goto @givemasterballmain ' Give the masterball.
+end
+
+#org @resetvar
+setvar 0x5100 0x0 ' Reset stored variable to 0, return to the script.
+return
+
+'---------
+' Master Ball Game Function End
+'---------
+
+'---------
+' Give Masterball Script
+'---------
+
+#org @givemasterballmain
+lockall
+setweather 0x6
+doweather
+pause 0x50
+fadescreen 0x1
+clearflag 0x1110 ' Just for redundancy.
+showsprite 0x7 ' Shows DEV.
+fadescreen 0x0
+msgbox @nonibros 0x6 ' Plays a message telling player that this is the DEV.
+textcolor 0x2 ' Sets text to black.
+bufferitem 0x1 0x1 ' To [buffer2] Add the item Masterball.
+fanfare 0x101
+preparemsg @receiveditem ' Received the item Message.
+lockall
+waitmsg
+waitfanfare
+additem 0x1 0x1 ' Add 1 Masterball.
+msgbox @putawayballs 0x6 ' Plays a message telling the player they have put away their balls.
+lockall
+textcolor 0x0 ' Sets color to blue.
+msgbox @lookforward 0x6 ' DEV says bye.
+lockall
+applymovement 0x7 @happyface
+waitmovement 0x0
+pause 0x10
+setflag 0x1110 ' Tells the game we have completed our events and to remove the DEV.
+fadescreen 0x1
+hidesprite 0x7 ' Hide DEV.
+fadescreen 0x0
+pause 0x10
+resetweather
+doweather
+pause 0x20
+releaseall 'release the player
+end
+
+'---------
+' Strings
+'---------
+
+#org @nonibros
+= Nonibros: Hello there [player].\pThanks a lot for playing the\nMasterball Fun Game No. 1!\pIt was quite fun to make and I\ndo hope you enjoyed.\pYou should look forward to other\nchallenges that await you!\pHere is your Masterball.
+
+#org @receiveditem
+= Obtained the [buffer2]!
+
+#org @putawayballs
+= [player] put the Masterball away\nin the Bag's Balls Pocket.
+
+#org @lookforward
+= I look forward to seeing how you\ndo on your journey, [player]!\pBye for now.
+
+'---------
+' Strings End
+'---------
+
+'-----------
+' Movements
+'-----------
+
+#org @happyface
+#raw 0x66 'Happy (^_^)
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+'---------
+' Give Masterball Script End
+'---------
+
+
+'-----------
+' Script End
+'-----------

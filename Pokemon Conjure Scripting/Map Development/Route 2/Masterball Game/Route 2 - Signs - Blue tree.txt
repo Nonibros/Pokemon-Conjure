@@ -1,0 +1,63 @@
+' This is for the blue tree in the rest stop on Route 2.
+' Copyright @2016 Nonibros.
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Master Ball Game Function
+'---------
+#org @masterball
+checkflag 0x1100 ' Checks whether we have finished the game.
+if 0x1 goto @rbluetree ' If we have, just display a regular message.
+setvar 0x4002 0X2 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
+setvar 0x4003 0X3 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
+call 0X9244000 ' Call the order checking script offset.
+goto @sbluetree ' If we have not ended the game, display a different message.
+
+'---------
+' Master Ball Game Function End
+'---------
+
+'---------
+' Strange Tree Function
+'---------
+#org @sbluetree  ' During game message.
+msgbox @bluetreemessage1 0x3
+end
+
+'---------
+' Strange Tree Function End
+'---------
+
+'---------
+' Regular Tree Function
+'---------
+#org @rbluetree ' After game message.
+msgbox @bluetreemessage2 0x3
+end
+
+'---------
+' Regular Tree Function End
+'---------
+
+'---------
+' Strings End
+'---------
+
+#org @bluetreemessage1
+= This is a strange blue tree.
+
+#org @bluetreemessage2
+= This is a blue tree.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

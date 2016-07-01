@@ -1,0 +1,62 @@
+'This is a simple note script for the left tree by the entrance.
+'There are two notes. There is one for before the game and one for after.
+'---------
+' Script End
+'---------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Main Function
+'---------
+#org @mainfunction
+checkflag 0x1100 ' Checks whether we have reached the final object in the order script.
+if 0x1 goto @lefttreeaftergame ' If we have, display a note telling the player that that was the final item. If not, display the game message.
+goto @lefttreebeforegame ' Continue on.
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Before Game
+'---------
+
+#org @lefttreebeforegame ' Game message.
+msgbox @playagame 0x3
+end
+
+'---------
+' Before Game End
+'---------
+
+'---------
+' After Game
+'---------
+
+#org @lefttreeaftergame ' Thanks message.
+msgbox @endofgame 0x3
+end
+
+'---------
+' After Game End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @playagame
+= There is a note in the plant:\pLet's play a game.\pHere are some clues for the game.\nFollow them in order for a prize!\pEvery tool has a purpose.\nI'm kicking butt.\lWhat a blue tree?\lI love the outdoors.\lI can't sit still.\pI come to this land from the\nSouth, and to the East I see?\pI love cake!\nA very smart tree!\pI'm in the middle of the rug?!\nFace me mortal!\pWhat the heck does this mean?
+
+#org @endofgame
+= There is a note from Nonibros:\pThanks for playing [player]!\nLook forward to some more games!
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------
