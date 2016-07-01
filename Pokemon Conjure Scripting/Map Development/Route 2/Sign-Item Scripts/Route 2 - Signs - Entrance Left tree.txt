@@ -1,0 +1,33 @@
+'This is a simple note script for the left tree by the entrance.
+'---------
+' Script End
+'---------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Main Function
+'---------
+
+#org @lefttree
+msgbox @playagame 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @playagame
+= There is a note in the plant:\pLet's play a game.\pHere are some clues for the game.\nFollow them in order for a prize!\pEvery tool has a purpose.\nI'm kicking butt.\lWhat a blue tree?\lI love the outdoors.\lI can't sit still.\pI come to this land from the\nSouth, and to the East I see?\pI love cake!\nA very smart tree!\pI'm in the middle of the rug?!\nFace me mortal!\pWhat the heck does this mean?
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------
