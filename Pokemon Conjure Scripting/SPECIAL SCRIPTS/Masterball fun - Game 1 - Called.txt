@@ -28,7 +28,7 @@ setflag 0xfinalx
 return
 
 #org @nextvar
-setvar 0xstoredx 0xnextx ' Since we have passed the check, we store into stored variable our next checking variable, which is the object number.
+copyvar 0xstoredx 0xnextx ' Since we have passed the check, we store into stored variable our next checking variable, which is the object number.
 return
 
 #org @resetvar

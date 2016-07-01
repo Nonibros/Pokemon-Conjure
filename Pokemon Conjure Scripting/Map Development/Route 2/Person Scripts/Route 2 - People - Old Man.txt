@@ -33,9 +33,9 @@ compare 0x800D 0x0
 if 0x1 goto @neutralcaller ' Go to the neutral function caller.
 checkgender
 compare 0x800D 0x0 ' Go to the male random message system.
-if 0x1 call @malerandom
+if 0x1 goto @malecaller
 compare 0x800D 0x1 ' Go to the female random message system.
-if 0x1 call @femalerandom
+if 0x1 goto @femalecaller
 release
 end
 
@@ -44,13 +44,31 @@ end
 '---------
 
 '---------
-' Neutral Random Message System
+' Callers
 '---------
 
-#org @neutralcaller ' This calls the neutral random function and then releases the player when finished.
+#org @neutralcaller ' This calls the neutral random message system and then releases the player when finished.
 call @neutralrandom
 release
 end
+
+#org @malecaller ' This calls the male random message system and then releases the player when finished.
+call @malerandom
+release
+end
+
+#org @femalecaller ' This calls the female random message system and then releases the player when finished.
+call @femalerandom
+release
+end
+
+'---------
+' Callers End
+'---------
+
+'---------
+' Neutral Random Message System
+'---------
 
 #org @neutralrandom ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
 random 0x02
@@ -190,7 +208,7 @@ return
 '---------
 
 #org @neutralmessage1
-= I love taking walks from Sanohara to Kantohara sometimes.
+= I love taking walks from Sanohara\nto Kantohara sometimes.
 
 #org @neutralmessage2
 = I really love this area.\pThe air here is so clean and\nfresh.
@@ -199,7 +217,7 @@ return
 = Hello young man.\pListen, be careful choosing your\nmate when you grow older.\pI have a good wife, but she\ndoesn't understand anything about\ltools...
 
 #org @malemessage2
-= I used to be a great Pok\h1Bmon\ltrainer back in the day, but that\lwas a very long time ago.
+= I used to be a great Pok\h1Bmon\ntrainer back in the day, but that\lwas a very long time ago.
 
 #org @malemessage3
 = I love working in my shed, but my\nwife always complains and tells\lme to stop fooling around and\lhelp her with the cooking.\pI don't know anything about\ncooking, haven't wanted to know\lanything about it, and I've been\ldoing just fine for over 50 years\lthank you very much.

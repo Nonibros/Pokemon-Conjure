@@ -32,7 +32,7 @@ setflag 0x1100
 return
 
 #org @nextvar
-setvar 0x5100 0x4003 ' Since we have passed the check, we store into stored variable our next checking variable, which is the object number.
+copyvar 0x5100 0x4003 ' Since we have passed the check, we store into stored variable our next checking variable, which is the object number.
 return
 
 #org @resetvar

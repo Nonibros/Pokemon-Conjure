@@ -1,4 +1,4 @@
-' This is for the camper in the rest stop on Route 2.
+' This is for the guy running in the rest stop on Route 2.
 ' Copyright @2016 Nonibros.
 '-----------
 ' Script Start
@@ -27,14 +27,7 @@ goto @mainfunction ' Continue on.
 #org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
 lock
 faceplayer
-random 0x02 ' We will decide on either the neutral message system, or a gender specific system.
-compare 0x800D 0x0
-if 0x1 goto @neutralcaller ' Go to the neutral function caller.
-checkgender
-compare 0x800D 0x0 ' Go to the male random message system.
-if 0x1 call @malerandom
-compare 0x800D 0x1 ' Go to the female random message system.
-if 0x1 call @femalerandom
+call @neutralrandom
 release
 end
 
@@ -45,11 +38,6 @@ end
 '---------
 ' Neutral Random Message System
 '---------
-
-#org @neutralcaller ' This calls the neutral random function and then releases the player when finished.
-call @neutralrandom
-release
-end
 
 #org @neutralrandom ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
 random 0x02
@@ -105,13 +93,13 @@ return
 '---------
 
 #org @neutralmessage1
-= I used to work in Johto's\nNational Park.\pMan, what a park.
+= I\pAM\pJUST\pSO\pHYPER!
 
 #org @neutralmessage2
-= I'm the one in charge of this\narea.
+= I love running!\pI love it!\pI love it!
 
 #org @neutralmessage3
-= I love managing this area!
+= You, kid, start running!
 
 '---------
 ' Strings End
