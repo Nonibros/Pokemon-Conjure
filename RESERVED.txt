@@ -79,8 +79,9 @@ Flag blocks:
 0x15A - Reserved for all good specific characters. Set to 1 at the beginning to shut all GOOD people OFF. 0 Leaves them on. NEVER CHANGE THIS.
 0x15B - Reserved for all evil specific characters. Set to 1 at the beginning to shut all EVIL people OFF. 0 Leaves them on. NEVER CHANGE THIS.
 0x900 - 0x9FF - Reserved for removing/showing people.
-0xA00 - 0xAFF - Reserved for giving items.
+0xA00 - 0xBFF - Reserved for giving items.
 0xC00 - 0xCFF - Reserved for special event flags.
+0xE00 - 0xEFF - Reserved for shiny trainer flags.
 
 
 
