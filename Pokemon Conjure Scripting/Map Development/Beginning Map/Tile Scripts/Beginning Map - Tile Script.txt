@@ -1,6 +1,7 @@
 ' This is the script for the two tilescripts at the begining of the game. When this is compiled XSE actually gives you the offsets for @tilescriptleft and @tilescriptright.
 ' Then add the offsets to each script tile in Advance Map.
 ' Left for left, right for right, and the script does the rest of the work.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -39,9 +40,9 @@ goto @mainfunction
 lockall
 textcolor 0x0
 msgbox @comehere 0x6
-compare 0x4001 0x0
+compare 0x4001 0x0 ' Movement for left tile.
 if 0x1 call @leftmovement
-compare 0x4001 0x1
+compare 0x4001 0x1 ' Movement for right tile.
 if 0x1 call @rightmovement
 releaseall
 end

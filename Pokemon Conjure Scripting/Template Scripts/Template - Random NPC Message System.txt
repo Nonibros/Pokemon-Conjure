@@ -1,9 +1,7 @@
-'So this is the product of an idea I had for a while. I use a different system in my own rom hack, but for people whom aren't important enough to dedicate flags to, or who just say random things, this is perfect.
-'In short, the is a random message system. We add a random function, and when we have a certain number, we will say a message. If we wanted 10 random messages, it would be simple enough to do.
-'This simple system says 4 different messages.
-'Copyright @2016 Nonibros
-'Started: 10:50 AM 6/24/2016
-'Complete: 10:56 AM 6/24/2016
+' So this is the product of an idea I had for a while. I use a different system in my own rom hack, but for people whom aren't important enough to dedicate flags to, or who just say random things, this is perfect.
+' In short, the is a random message system. We add a random function, and when we have a certain number, we will say a message. If we wanted 10 random messages, it would be simple enough to do.
+' This simple system says 4 different messages.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------

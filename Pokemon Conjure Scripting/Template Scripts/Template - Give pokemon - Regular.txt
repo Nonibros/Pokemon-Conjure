@@ -1,6 +1,8 @@
-'This is used to give the player a selected Pokemon.
-'Variable 0x4003 controls which Pokemon to give, as shown below.
-'0xZZZ checks if we have given a pokemon. Replace all ZZZ with a free flag number.
+' This is used to give the player a selected Pokemon.
+' Variable 0x4003 controls which Pokemon to give, as shown below.
+' 0xZZZ checks if we have given a pokemon. Replace all ZZZ with a free flag number.
+' Best to use the professor oak script, or another example.
+' Script made by: Nonibros
 '---------
 ' Script Start
 '---------

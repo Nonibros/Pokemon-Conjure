@@ -70,7 +70,7 @@ end
 '---------
 
 #org @neutralrandom ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
-random 0x02
+random 0x03
 compare 0x800D 0x0
 if 0x1 goto @neutralprep1
 compare 0x800D 0x1

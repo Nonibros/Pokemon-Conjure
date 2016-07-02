@@ -2,7 +2,7 @@
 ' In short, it will check whether certain variables for specific people are activated or not, and activates these in an order.
 ' So, one must talk to one object, another, etc etc, in a SPECIFIED order.
 ' A hint can be placed somewhere detailing, in a type of code or whatever, the order.
-' Copyright @2016 Nonibros.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------

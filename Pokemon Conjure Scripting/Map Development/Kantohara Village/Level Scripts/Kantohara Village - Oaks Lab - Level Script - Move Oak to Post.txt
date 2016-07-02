@@ -1,6 +1,7 @@
 ' This script moves oak when you enter the lab after talking with him.
 ' Set this level script to type 02, Validates values...
 ' In Advance Map, set "Flag:" to "5001" and set "Value:" to "0005"
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------

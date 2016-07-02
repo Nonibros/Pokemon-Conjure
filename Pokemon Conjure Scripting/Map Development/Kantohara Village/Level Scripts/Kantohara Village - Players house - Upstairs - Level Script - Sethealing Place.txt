@@ -1,5 +1,7 @@
 ' Set's healing place to home, in case if all your pokemon faint. 
 ' Set this level script to type 03, On entering map/not on menu close.
+' USE THE SCRIPTS IN THE "SPECIAL SCRIPTS" FOLDER INSTEAD!
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------

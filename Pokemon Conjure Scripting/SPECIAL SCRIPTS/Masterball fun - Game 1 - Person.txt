@@ -1,6 +1,6 @@
 ' This is for the master ball game.
 ' This itself is not a stand alone script. You instead add this to a person or signpost or whatever to call the masterball game object order checking function.
-' Copyright @2016 Nonibros.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------

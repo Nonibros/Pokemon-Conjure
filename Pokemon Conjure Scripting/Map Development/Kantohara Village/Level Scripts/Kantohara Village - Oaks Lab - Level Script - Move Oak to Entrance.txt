@@ -1,5 +1,6 @@
 ' This will move oak to the door, making it look as if he's entered.
 ' Set this level script to type 03, On entering map/not on menu close.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -7,7 +8,7 @@
 
 #org @main
 compare 0x5001 0x5 ' checks to see if we have talked to oak outside.
-if 0x1 call @oakentrance
+if 0x1 call @oakentrance ' Moves Oak.
 end
 
 #org @oakentrance

@@ -1,5 +1,6 @@
-'This script is for regular Non-pokecenter healing after blacking out.
-'Currently have bed, and the camper in Route 2 rest stop.
+' This script is for regular Non-pokecenter healing after blacking out.
+' Currently have bed, and the camper in Route 2 rest stop.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -11,8 +12,8 @@
 ' Pointer
 '-----------
 
-#org 0x1A8DD8
-goto @nap
+#org 0x1A8DD8 ' We will edit the non - PC healing spot when we die to point to our main function.
+goto @whichspot
 end
 
 '-----------
@@ -23,35 +24,34 @@ end
 ' Main Function
 '---------
 
-#org @nap
+#org @whichspot ' When we lost all of our Pokemon, we will pop 
 lockall
-compare 0x500F 0x0
-if 0x1 goto @healplayerhouse ' We don't move on the tile next to the trainer, so we will go to the battle function.
-compare 0x500F 0x1
-if 0x1 goto @healroute2 ' This is the 2nd tile from the trainer.
-goto @healplayerhouse ' Autogo to the house incase something is up.
+compare 0x500F 0x0 ' This is set in the players house. When they die, they appear home in bed.
+if 0x1 goto @healplayerhouse ' Go to the players house.
+compare 0x500F 0x1 ' This is set once the player enters Route 2. When they die, they appear by the camper in the rest stop one Route 2.
+if 0x1 goto @healroute2 ' Go to the rest house on Route 2.
+goto @healplayerhouse ' Auto-go to the house in case something is up.
 
-#org @healplayerhouse
-textcolor 0x3
+#org @healplayerhouse ' Players house function.
+textcolor 0x3 ' Black text because you are talking.
 applymovement 0xFF @facedown ' We face down towards the bed.
 waitmovement 0x0 ' Wait until movements are complete.
-msgbox @beforenap MSG_KEEPOPEN
+msgbox @beforenap MSG_KEEPOPEN ' Message before healing.
 call @healing ' Call healing function
-msgbox @afternap MSG_KEEPOPEN
-fadedefault
-releaseall
+msgbox @afternap MSG_KEEPOPEN ' Message after healing.
+fadedefault ' Fade out after fainting.
+releaseall ' Release the player so they can walk and stuff.
 end
 
-#org @healroute2
-lockall
-textcolor 0x0
+#org @healroute2 ' Rest stop on Route 2 function.
+textcolor 0x0 ' Blue text because you are talking.
 applymovement 0xFF @faceup ' We face up towards the camper.
 waitmovement 0x0 ' Wait until movements are complete.
-msgbox @beforehealroute2 MSG_KEEPOPEN
+msgbox @beforehealroute2 MSG_KEEPOPEN ' Message before healing.
 call @healing ' Call healing function
-msgbox @afterhealroute2 MSG_KEEPOPEN
-fadedefault
-releaseall
+msgbox @afterhealroute2 MSG_KEEPOPEN ' Message after healing.
+fadedefault ' Fade out after fainting.
+releaseall ' Release the player so they can walk and stuff.
 end
 
 '---------
@@ -63,7 +63,7 @@ end
 ' Healing Function
 '---------
 
-#org @healing
+#org @healing ' This is the healing function.
 fadescreen 0x1
 fanfare 0x100
 waitfanfare

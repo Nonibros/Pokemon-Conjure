@@ -1,5 +1,5 @@
 ' This is for the middle of the rug in the rest stop on Route 2.
-' Copyright @2016 Nonibros.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------

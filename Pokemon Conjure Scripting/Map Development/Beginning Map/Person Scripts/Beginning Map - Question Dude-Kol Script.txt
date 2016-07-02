@@ -1,6 +1,7 @@
 ' This is the script for the ??? guy at the beginning.
 ' Add 0x900 to ??? or Kol's Person ID in Advance Map to remove him from there forever.
 ' Complete: 8:43 PM 6/17/2016
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -50,28 +51,6 @@ release
 warp 0x4 0x1 0xFF 0x2 0x5 ' Home base warp.
 end
 
-#org @setvariablesgood ' These allow only good events to happen. Bad ones never will.
-setvar 0x5004 0x1 ' Good to yes.
-setvar 0x5005 0x1
-setvar 0x5006 0x1
-setvar 0x5007 0x0 ' Evil to no.
-setvar 0x5008 0x0
-setvar 0x5009 0x0
-clearflag 0x15A ' Keep all good NPCs
-setflag 0x15B ' Remove all evil NPCs.
-return
-
-#org @setvariablesbad ' These allow only bad events to happen. Good ones never will.
-setvar 0x5004 0x0 ' Good to no.
-setvar 0x5005 0x0
-setvar 0x5006 0x0
-setvar 0x5007 0x1 ' Evil to yes.
-setvar 0x5008 0x1
-setvar 0x5009 0x1
-setflag 0x15A ' Remove all good NPCs
-cleaflag 0x15B ' Keep all evil NPCs.
-return
-
 '---------
 ' Mini Functions End
 '---------
@@ -82,13 +61,16 @@ return
 '---------
 
 #org @areyouwithmeornot
-= ???: You know, I've been thinking.\p\v\h01: Hm?\p???: Pok\h1Bmon.\pSuch horrible creatures.\pThey turn us humans into such\naddicts.\pThey kill and attack without\nhesitation.\pSomeday I'll wipe them all out\nwith you.\pRight \v\h01?
+= ???: You know, I've been thinking.\p\v\h01: Hm?\p???: Pok\h1Bmon.\pSuch horrible creatures.\pThey turn us humans into such\naddicts.\pThey kill and attack without\nhesitation.\pSomeday I'll wipe them all out\nwith you.\pRight \v\h01?
+
 
 #org @evilsidemessage
-= ???: Yeah, I knew you would say\nthat, \v\h01.\pWe should probably head back now.\pSayonara!
+= ???: Yeah, I knew you would say\nthat, \v\h01.\pWe should probably head back now.\pSayonara!
+
 
 #org @goodsidemessage
-= ???: What?\nAre you crazy?\pYou must be one of those addicts\ntoo.\pI'm heading back now.\nYou'll regret this, \v\h01...
+= ???: What?\nAre you crazy?\pYou must be one of those addicts\ntoo.\pI'm heading back now.\nYou'll regret this, \v\h01...
+
 
 '---------
 ' Strings End

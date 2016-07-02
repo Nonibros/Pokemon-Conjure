@@ -1,6 +1,7 @@
 ' This is a seperate script that should be compiled after adding to it.
 ' One must erase anything from 0x1243300 - 0x1243FFF before compiling.
 ' It's purpose is to give a central location for maps that will be adding healing locations.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -10,7 +11,7 @@
 ' Main Function
 '---------
 
-#org @healingplayerhouse
+#org @healingplayerhouse ' This function is to get the area for the players house, should we faint.
 setvar 0x500F 0x0 ' Sets our variable to the bed, incase we should faint.
 sethealingplace 0x1 ' Sets the type of healing to regular, non PC.
 setvar 0x405a 0x0104 ' 01 = map /  04 = bank
@@ -18,8 +19,8 @@ setvar 0x405b 0x0002 ' 02 = x coordinate of player
 setvar 0x405c 0x0005 ' 05 = y coordinate of player
 end
 
-#org @healingroute2
-setvar 0x500F 0x1 ' Sets our variable to the bed, incase we should faint.
+#org @healingroute2 ' This function is to get the area for the rest stop on Route 2, should we faint.
+setvar 0x500F 0x1 ' Sets our variable to the rest stop in Route 2, incase we should faint.
 sethealingplace 0x1 ' Sets the type of healing to regular, non PC.
 setvar 0x405a 0x0F02 ' 0F = map /  02 = bank
 setvar 0x405b 0x000D ' 0D = x coordinate of player

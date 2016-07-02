@@ -1,0 +1,1 @@
+Add a script type 03 on enter map for the level script, pointing to the location where you compiled the script for route 2 in "SPECIAL SCRIPTS" folder.

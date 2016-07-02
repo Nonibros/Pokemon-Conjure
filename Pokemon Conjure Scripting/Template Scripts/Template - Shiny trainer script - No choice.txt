@@ -2,7 +2,7 @@
 ' In Advance Map, set "Var number:" to "5000" and set "Var value:" to "0000". This means that this will always run. This is designed with a check in place.
 ' I designed the script so when the player steps on it after defeating the trainer, it will just release them.
 ' One note. There isn't much I can do about the game not playing the music until the trainer reaches the player. Typically it's instant, but here I have to rely on the trainerbattle command, which auto plays music. If I wanted to change that, I'd need to know ASM, and frankly, I'd probably break the game like this. It's not a big deal, most people won't care anyway whether the music is delayed.
-' Copyright @2016 Nonibros
+' Script made by: Nonibros
 ' Things to replace:
 ' 0xTFX = Trainer flag.
 ' 0xP = Person event no. in Advance map.
@@ -47,13 +47,14 @@ end
 ' Have we battled?
 '-----------
 
-#org @areweactive
+#org @areweactive ' Checks if the tilescript is active.
 checkflag 0xTTT ' We check a specific flag reserved for this trainer.
 if 0x1 goto @free ' Release the player since we have already battled.
 goto @justnoticedyou ' Go to a function for the trainer.
 end
 
-#org @free
+#org @free ' Release the play from the tilescript.
+releaseall
 end
 
 '-----------
@@ -97,7 +98,7 @@ end
 '---------
 ' Movement Functions
 '---------
-
+' These are the movements for each tile.
 #org @movement2tile
 applymovement 0xP @movementtile2
 waitmovement 0x0
@@ -154,7 +155,7 @@ return
 ' Battle Section
 '-----------
 
-#org @mainbattle
+#org @mainbattle ' The main battle function, which calls the trainer we need to battle, and makes their pokemon shiny.
 checkflag 0x230 ' Check our side.
 setflag 0xTTT
 textcolor 0xTXT ' Set's text color. 0 for Male - Blue. 1 for Female - Red. 2 for Neutral - Black.

@@ -1,26 +1,13 @@
-' This is for the old man in the rest stop on Route 2.
-' I am implementing a new system here where there is a random chance for a neutral message system, or a gender based system. This should make the game more fluid.
+' So, this is a clever little system that can give different messages based on a random input, for a varity of different situations.
+' It's better with an example. Below, you'll find both a neutral message system and a gender specific one. Neutral will play for all players while gender is based on the players gender.
+' Whether it is neutral or gender specific is chosen randomly, and then a random message is picked from that system.
+' This is modular, so if you wish for the female gender to have 6 extra message, it is a simple copy and past, change the random number, and that's that.
 ' Copyright @2016 Nonibros.
 '-----------
 ' Script Start
 '-----------
 
 #dynamic 0x11FFFA0
-
-'---------
-' Master Ball Game Function
-'---------
-#org @masterball
-checkflag 0x1100 ' Checks whether we have reached the final object in the order script.
-if 0x1 goto @mainfunction ' If we have, just continue on. If not, set up the variables and check.
-setvar 0x4002 0X0 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
-setvar 0x4003 0X1 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
-call 0X9244000 ' Call the order checking script offset.
-goto @mainfunction ' Continue on.
-
-'---------
-' Master Ball Game Function End
-'---------
 
 '---------
 ' Main Function
@@ -32,9 +19,9 @@ random 0x02 ' We will decide on either the neutral message system, or a gender s
 compare 0x800D 0x0
 if 0x1 goto @neutralcaller ' Go to the neutral function caller.
 checkgender
-compare 0x800D 0x0 ' Go to the male random message system.
+compare 0x800D 0x0 ' If male go to the male random message system.
 if 0x1 goto @malecaller
-compare 0x800D 0x1 ' Go to the female random message system.
+compare 0x800D 0x1 ' If female go to the female random message system.
 if 0x1 goto @femalecaller
 release
 end
@@ -208,25 +195,25 @@ return
 '---------
 
 #org @neutralmessage1
-= I love taking walks from Sanohara\nto Kantohara sometimes.
+= Neutral message 1.
 
 #org @neutralmessage2
-= I really love this area.\pThe air here is so clean and\nfresh.
+= Neutral message 2.
 
 #org @malemessage1
-= Hello young man.\pListen, be careful choosing your\nmate when you grow older.\pI have a good wife, but she\ndoesn't understand anything about\ltools...
+= Male message 1.
 
 #org @malemessage2
-= I used to be a great Pok\h1Bmon\ntrainer back in the day, but that\lwas a very long time ago.
+= Male message 3.
 
 #org @malemessage3
-= I love working in my shed, but my\nwife always complains and tells\lme to stop fooling around and\lhelp her with the cooking.\pI don't know anything about\ncooking, haven't wanted to know\lanything about it, and I've been\ldoing just fine for over 50 years\lthank you very much.
+= Male message 3.
 
 #org @femalemessage1
-= Hello young lady.\nPleasant day isn't it?
+= Female message 1.
 
 #org @femalemessage2
-= I love taking my afternoon naps.\nI might move along soon, but it\lis quite nice here.
+= Female message 2.
 
 '---------
 ' Strings End

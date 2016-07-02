@@ -1,5 +1,6 @@
-'This functions offset should be added to any players you haven't worked on.
-'When/If you have beta testers, If they see this message once that area is complete, it means you missed a spot.
+' This functions offset should be added to any players you haven't worked on.
+' When/If you have beta testers, If they see this message once that area is complete, it means you missed a spot.
+' Script made by: Nonibros
 '---------
 ' Script Start
 '---------
@@ -10,8 +11,8 @@
 ' Main Function
 '---------
 
-#org @main
-msgbox @notprogrammed 0x6
+#org @notprogrammedmain ' Main not programmed function.
+msgbox @notprogrammed 0x6 ' The futon message.
 end
 
 '---------

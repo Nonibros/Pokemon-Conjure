@@ -1,4 +1,6 @@
-'This is a simple newspaper script to give some character to certain houses.
+' This is a simple newspaper script to give some character to certain houses.
+' This is good for making some characters more dynamic, such as an old man holding a newspaper or something.
+' Script made by: Nonibros
 '---------
 ' Script Start
 '---------
@@ -9,8 +11,8 @@
 ' Main Function
 '---------
 
-#org @newspaper
-msgbox @newspapermessage 0x6
+#org @newspapermain ' Main newspaper function.
+msgbox @newspapermessage 0x6 ' The newspaper message.
 end
 
 '---------

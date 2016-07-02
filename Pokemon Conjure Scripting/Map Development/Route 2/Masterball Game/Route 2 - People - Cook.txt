@@ -122,7 +122,7 @@ return
 '---------
 
 #org @malerandom ' We are picking a random number here for the male system. Whatever number is picked is the message to display.
-random 0x03
+random 0x02
 compare 0x800D 0x0
 if 0x1 goto @maleprep1
 compare 0x800D 0x1
@@ -164,7 +164,7 @@ return
 '---------
 
 #org @femalerandom ' We are picking a random number here for the female system. Whatever number is picked is the message to display.
-random 0x03
+random 0x02
 compare 0x800D 0x0
 if 0x1 goto @femaleprep1
 compare 0x800D 0x1

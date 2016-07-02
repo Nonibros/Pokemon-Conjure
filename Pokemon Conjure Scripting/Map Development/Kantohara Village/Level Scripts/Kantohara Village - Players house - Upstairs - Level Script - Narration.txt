@@ -2,6 +2,7 @@
 ' Set this level script to type 02, Validates values...
 ' In Advance Map, set "Flag:" to "5001" and set "Value:" to "0002"
 'Complete: 11:55 AM 6/24/2016
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -32,7 +33,7 @@ releaseall
 end
 
 #org @narrationgood
-msgbox @narrationgoodmessage 0x6 ' Display Evil Intro.
+msgbox @narrationgoodmessage 0x6 ' Display Good Intro.
 releaseall
 end
 

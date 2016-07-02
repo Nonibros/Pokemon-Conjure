@@ -1,6 +1,7 @@
 ' This is a seperate script that should be compiled after adding to it.
 ' One must erase anything from 0x1247800 - 0x1247FFF before compiling.
-' It's purpose is to supply the Kol script with setting variables for the evil side.
+' It's purpose is to supply the Kol script with setting variables for the evil side. We can easily change this area 
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -11,15 +12,15 @@
 '---------
 
 #org @setvariablesbad ' These allow only bad events to happen. Good ones never will.
-setvar 0x5004 0x0 ' Good to no.
+setvar 0x5004 0x0 ' Set good variables to inactive.
 setvar 0x5005 0x0
 setvar 0x5006 0x0
-setvar 0x5007 0x1 ' Evil to yes.
+setvar 0x5007 0x1 ' Set evil variables to active.
 setvar 0x5008 0x1
 setvar 0x5009 0x1
-setflag 0x15A ' Remove all good NPCs
-clearflag 0x15B ' Keep all evil NPCs.
-return
+setflag 0x15A ' Remove all good NPCs on all maps.
+clearflag 0x15B ' Keep all evil NPCs on all maps.
+return ' Return back to the Kol script.
 
 '---------
 ' Main Function End

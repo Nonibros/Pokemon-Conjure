@@ -1,6 +1,6 @@
 ' This is for the master ball game.
 ' This itself is not a stand alone script. You instead add this to a person or signpost or whatever to call the masterball game object order checking function.
-' Copyright @2016 Nonibros.
+' Script made by: Nonibros
 '-----------
 ' Script Start
 '-----------
@@ -21,7 +21,7 @@ checkflag 0xfinalx ' Checks whether we have reached the final object in the orde
 if 0x1 goto @continuex ' If we have, just continue on. If not, set up the variables and check.
 setvar 0xcheckx 0xobj-1 'Set our checking variable = the object orders number - 1. Eg. 5th object in line would be 4.
 setvar 0xnextx 0xobj 'Set our checking variable = the object orders number. Eg. 5th object in line would be 5. This is for the next check. This line is Not NEEDED FOR the LAST OBJECT.
-call @checkmasterballorder ' Call the order checking script offset.
+call @checkmasterballorder ' Call the order checking script offset. This is in another file.
 goto @continuex ' Continue on.
 end ' We end here.
 
@@ -32,7 +32,7 @@ end ' We end here.
 '---------
 ' Final Object
 '---------
-
+' This is for the final object. BEST TO USE THE NONIBROS APPEAR ON ROUTE 2 SCRIPT FOR THE FINAL OBJECT.
 #org @continuex ' This is a sample script for the final object that checks whether the final object flag has been finished or not. If so, it will check that.
 checkflag 0xfinishedx ' Checks whether we have done the event after setting finalx
 if 0x0 goto @continue2x ' If we have NOT, we will do that event.
