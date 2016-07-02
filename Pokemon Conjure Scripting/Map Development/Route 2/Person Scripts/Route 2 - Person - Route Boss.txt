@@ -1,0 +1,97 @@
+' This is for the Route 2 mini boss.
+' Copyright @2016 Nonibros
+'-----------
+' Script Start
+'-----------
+#dynamic 0x11FFFA0
+
+'-----------
+' Have we battled?
+'-----------
+
+#org @areweactive
+lock
+faceplayer
+checkflag 0xE00 ' We check a specific flag reserved for this trainer.
+if 0x1 goto @defeated ' Say something else if we have already battled.
+goto @mainbattle ' Go to a battle function for the trainer.
+end
+
+#org @defeated ' This part just says different, random things.
+random 0x02 ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
+compare 0x800D 0x0
+if 0x1 goto @neutralprep1 ' Display message 1.
+compare 0x800D 0x1
+if 0x1 goto @neutralprep2 ' Display message 2.
+goto @neutralprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+
+'-----------
+' Have we battled? End
+'-----------
+
+'---------
+' Neutral Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @neutralprep1
+msgbox @neutralmessage1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @neutralprep2
+msgbox @neutralmessage2 0x6
+return
+
+'---------
+' Neutral Messages End
+'---------
+
+'-----------
+' Battle Section
+'-----------
+
+#org @mainbattle
+setflag 0xE00
+textcolor 0x0 ' Set's text color. 0 for Male - Blue. 1 for Female - Red. 2 for Neutral - Black.
+callasm 0x7F81A1 ' Calls Hackmews shiny ASM.
+setvar 0x8003 0x102 ' Pokemon to be shiny. Say its 0x905. The 05 would be 5 total trainer Pokemon. The 9 you would convert to binary by the number of pokemon. So, 9 here would be 01001. This says that pokemon 2 and 5 will be shiny. That's all.
+trainerbattle 0x0 0x16 0x0 @before @after
+end
+
+'-----------
+' Battle Section End
+'-----------
+
+'---------
+' Strings
+'---------
+
+#org @before
+= Hello young one.\pSince you look ready, we shall\nnow battle!
+
+#org @after
+= It seems I lost.\nHahaha.
+
+#org @neutralmessage1
+= You are a very strong trainer.
+
+#org @neutralmessage2
+= Me and Aron have been friends for\nyears.\pI caught him in a cave in Hoenn\non a visit and we've best buddies\lever since.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

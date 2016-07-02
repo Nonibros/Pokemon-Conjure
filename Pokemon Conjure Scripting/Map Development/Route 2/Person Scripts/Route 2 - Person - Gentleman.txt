@@ -1,0 +1,110 @@
+' This is for the Gentleman on Route 2.
+' Copyright @2016 Nonibros
+'-----------
+' Script Start
+'-----------
+#dynamic 0x11FFFA0
+
+'-----------
+' Have we battled?
+'-----------
+
+#org @areweactive
+lock
+faceplayer
+checkflag 0xE01 ' We check a specific flag reserved for this trainer.
+if 0x1 goto @defeated ' Say something else if we have already battled.
+goto @mainbattle ' Go to a battle function for the trainer.
+end
+
+#org @defeated ' This part just says different, random things.
+random 0x03 ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
+compare 0x800D 0x0
+if 0x1 goto @neutralprep1 ' Display message 1.
+compare 0x800D 0x1
+if 0x1 goto @neutralprep2 ' Display message 2.
+compare 0x800D 0x2
+if 0x1 goto @neutralprep3 ' Display message 3.
+goto @neutralprep3 ' If there is a glitch, this will auto go to the last message.
+end
+
+
+'-----------
+' Have we battled? End
+'-----------
+
+'---------
+' Neutral Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @neutralprep1
+msgbox @neutralmessage1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @neutralprep2
+msgbox @neutralmessage2 0x6
+return
+
+'---------
+' Message 3
+'---------
+
+#org @neutralprep3
+msgbox @neutralmessage3 0x6
+return
+
+'---------
+' Neutral Messages End
+'---------
+
+'-----------
+' Battle Section
+'-----------
+
+#org @mainbattle
+setflag 0xE01
+textcolor 0x0 ' Set's text color. 0 for Male - Blue. 1 for Female - Red. 2 for Neutral - Black.
+callasm 0x7F81A1 ' Calls Hackmews shiny ASM.
+setvar 0x8003 0x101 ' Pokemon to be shiny. Say its 0x905. The 05 would be 5 total trainer Pokemon. The 9 you would convert to binary by the number of pokemon. So, 9 here would be 01001. This says that pokemon 2 and 5 will be shiny. That's all.
+trainerbattle 0x0 0x17 0x0 @before @after
+end
+
+'-----------
+' Battle Section End
+'-----------
+
+'---------
+' Strings
+'---------
+
+#org @before
+= Ah hello there.\pYou must be a trainer, and since\nour eyes have met, we must\linitiate a battle now.\pBrace yourself.
+
+#org @after
+= The burning power of my lovely\nPonyta couldn't compete with your\lskill.\pYou have won this match.
+
+#org @neutralmessage1
+= I do love traveling to exotic\nplaces.\pI typically take ships all around\nthe world, as I am very wealthy.
+
+#org @neutralmessage2
+= I met my Ponyta in a stable in\nJohto.\pI spent quite a fortune, but it\nwas well worth it.
+
+#org @neutralmessage3
+= You wonder what I am doing here?\pPonyta loves the air here, that's\nall.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------
