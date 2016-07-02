@@ -1,0 +1,23 @@
+' This one is very very simple. What this does is give a specified item, the quantity of the item, and displays a message.
+' Behind the scenes, this also sets the Person ID flag and hides the item in game.
+' Script made by: Nonibros
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @gaveitem
+giveitem 0x1D 0x2 MSG_FIND ' Gives 2 Moomoo Milks and displays a message.
+end
+
+'---------
+' Main Function End
+'---------
+
+'-----------
+' Script End
+'-----------

@@ -1,0 +1,34 @@
+' The sign at the little house on Route 2.
+' Script made by: Nonibros
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @littlehousesign
+msgbox @littlehousesignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @littlehousesignmessage
+= Welcome to the home!\n - The Reswalds
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

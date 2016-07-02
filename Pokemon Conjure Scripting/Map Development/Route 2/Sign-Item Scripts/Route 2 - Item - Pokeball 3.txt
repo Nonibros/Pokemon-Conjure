@@ -1,0 +1,29 @@
+' This one is very very simple. What this does is give a specified item, the quantity of the item, and displays a message.
+' Behind the scenes, this also sets the Person ID flag and hides the item in game.
+' Script made by: Nonibros
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @gaveitem
+checkflag 0x230
+if 0x1 goto @itemevil ' If we are evil, give a different item.
+giveitem 0xD8 0x1 MSG_FIND ' Gives 1 Dragon Fang (Good side, for Bagon) and displays a message.
+end
+
+#org @itemevil ' Evil item
+giveitem 0xCE 0x1 MSG_FIND ' Gives 1 Black Glasses (Evil side, for Larvitar) and displays a message.
+end
+
+'---------
+' Main Function End
+'---------
+
+'-----------
+' Script End
+'-----------

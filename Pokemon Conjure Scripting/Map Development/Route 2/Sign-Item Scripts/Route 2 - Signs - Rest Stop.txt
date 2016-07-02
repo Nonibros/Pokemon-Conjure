@@ -1,0 +1,34 @@
+' The sign at the rest stop on Route 2.
+' Script made by: Nonibros
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @route2reststopsign
+msgbox @route2reststopsignmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @route2reststopsignmessage
+= Welcome to the rest stop!\nMotto: "Relax here for a bit!"
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------

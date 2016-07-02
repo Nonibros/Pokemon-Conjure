@@ -1,0 +1,34 @@
+' The sign at Route 2.
+' Script made by: Nonibros
+'---------
+' Script End
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @route2sign
+msgbox @route2signmessage 0x3
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @route2signmessage
+= Route 2\nThimble Town - Sanohara City
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------
