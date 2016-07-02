@@ -34,8 +34,11 @@ Block 0x1247800 - 0x1247FFF is for setting evil variables and flags after talkin
 0x1250000 - 0x126FFFF is for level scripts.
 [Nonibros] will give out a block to people working on the project.
 
-0x1270000 - 0x1300000 is a secondary area for general scripts.
+0x1270000 - 0x12FFFFF is a secondary area for general scripts.
 [Nonibros], the scripting coordinator will give out a block to people working on the project.
+
+0x1300000 - 0x130FFFF is for new trainers.
+[Nonibros] will change this.
 
 0x1500000 - 0x17FFFFF is for Map Insertions.
 The map coordinator will give out a block to people working on the project.
@@ -82,9 +85,6 @@ Flag blocks:
 0xA00 - 0xBFF - Reserved for giving items.
 0xC00 - 0xCFF - Reserved for special event flags.
 0xE00 - 0xEFF - Reserved for shiny trainer flags.
-
-
-
 0x1100 - 0x110F - Reserved for masterball game final object flags.
 0x1100 - Reserved for finishing the first masterball game.
 0x1101 - Not yet used.
@@ -106,6 +106,9 @@ Reserved Flags:
 0xA01 - Reserved for Pokeball on Route 1.
 0xA02 - Reserved for Town Map in Kantohara.
 0xA03 - Reserved for Verne giving cash in theiving Aide event.
+0xA04 - Reserved for Moomoo Milk by Thimble on Route 2.
+0xA05 - Reserved for Quick Claw in little wedge at the bottom of Route 2.
+0xA06 - Reserved for either Dragon Fang or Black Glasses, depending on your choosen side, in Route 2's grass.
 
 
 
