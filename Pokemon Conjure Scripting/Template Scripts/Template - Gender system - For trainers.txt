@@ -1,18 +1,16 @@
-' So, this is a clever little system that can give different messages based on a random input, for a varity of different situations.
-' It's better with an example. Below, you'll find both a neutral message system and a gender specific one. Neutral will play for all players while gender is based on the players gender.
-' Whether it is neutral or gender specific is chosen randomly, and then a random message is picked from that system.
-' This is modular, so if you wish for the female gender to have 6 extra message, it is a simple copy and past, change the random number, and that's that.
+' Gender - Neutral message system for trainers.
+' This version is for trainers. You just add a pointer to @messagesystemmain after the battle, and just copy this entire script.
 ' Copyright @2016 Nonibros.
 '-----------
-' Script Start
+' Gender - Neutral Script Start
 '-----------
 
-#dynamic 0x11FFFA0
+'#dynamic 0x11FFFA0 ' No offset because this is an add on.
 
 '---------
 ' Main Function
 '---------
-#org @mainfunction ' This is our main function. Here we call the system and lock/release the player.
+#org @messagesystemmain ' This is our main function. Here we call the system and lock/release the player.
 lock
 faceplayer
 random 0x02 ' We will decide on either the neutral message system, or a gender specific system.
@@ -100,14 +98,12 @@ return
 '---------
 
 #org @malerandom ' We are picking a random number here for the male system. Whatever number is picked is the message to display.
-random 0x03
+random 0x02
 compare 0x800D 0x0
 if 0x1 goto @maleprep1
 compare 0x800D 0x1
 if 0x1 goto @maleprep2
-compare 0x800D 0x2
-if 0x1 goto @maleprep3
-goto @maleprep3 ' If there is a glitch, this will auto go to the last message.
+goto @maleprep2 ' If there is a glitch, this will auto go to the last message.
 end
 
 '---------
@@ -133,14 +129,6 @@ return
 
 #org @maleprep2
 msgbox @malemessage2 0x6
-return
-
-'---------
-' Message 3
-'---------
-
-#org @maleprep3
-msgbox @malemessage3 0x6
 return
 
 '---------
@@ -206,9 +194,6 @@ return
 #org @malemessage2
 = Male message 2.
 
-#org @malemessage3
-= Male message 3.
-
 #org @femalemessage1
 = Female message 1.
 
@@ -221,5 +206,5 @@ return
 
 
 '-----------
-' Script End
+' Gender - Neutral Script Start
 '-----------

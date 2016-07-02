@@ -1,0 +1,54 @@
+' This is a system for trainers
+' This version is for trainers. You just add a pointer to @messagesystemmain after the battle, and just copy this entire script.
+' Script made by: Nonibros
+'-----------
+' Script Start
+'-----------
+
+'-----------
+' Battle Script Start
+'-----------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0xTRAINERBATTLEID 0x0 @battlegreeting @battlewin ' Regular trainer battle here.
+goto @messagesystemmain ' After battle, we will go to a message system. This points to the template "Gender system - For trainers".
+end
+
+'---------
+' Main Function End
+'---------
+
+
+
+'---------
+' Strings
+'---------
+
+#org @battlegreeting
+= Prepare for battle!
+
+#org @battlewin
+= You won.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Battle Script End
+'-----------
+
+' Add "Gender system - For trainers" here.
+
+
+
+'-----------
+' Script End
+'-----------
