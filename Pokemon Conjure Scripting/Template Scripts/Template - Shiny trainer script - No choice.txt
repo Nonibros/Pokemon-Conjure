@@ -1,0 +1,187 @@
+' This script will activate a trainer battle with shiny pokemon, after stepping on a tile script.
+' In Advance Map, set "Var number:" to "5000" and set "Var value:" to "0000". This means that this will always run. This is designed with a check in place.
+' I designed the script so when the player steps on it after defeating the trainer, it will just release them.
+' One note. There isn't much I can do about the game not playing the music until the trainer reaches the player. Typically it's instant, but here I have to rely on the trainerbattle command, which auto plays music. If I wanted to change that, I'd need to know ASM, and frankly, I'd probably break the game like this. It's not a big deal, most people won't care anyway whether the music is delayed.
+' Copyright @2016 Nonibros
+' Things to replace:
+' 0xTFX = Trainer flag.
+' 0xP = Person event no. in Advance map.
+' 0xTTT = Specific trainers flag. This is set after the battle.
+' 0xTXT = Trainers text color.
+' 0xSHINYASM = The location of HackMews shiny asm code.
+' 0xSHINYVALUE = The amount of shiny pokemon the trainer has. Read that line for details.
+'-----------
+' Script Start
+'-----------
+#dynamic 0xOFFSET
+
+'-----------
+' Tile Specific Variables
+'-----------
+
+#org @position1 ' This is placed on the tile closest to the trainer.
+setvar 0x4000 0x0
+goto @areweactive
+end
+
+#org @position2 ' This is placed on the tile #2 in line from the trainer.
+setvar 0x4000 0x1
+goto @areweactive
+end
+
+#org @position3 ' This is placed on the tile #3 in line from the trainer.
+setvar 0x4000 0x2
+goto @areweactive
+end
+
+#org @position4 ' This is placed on the tile furthest from the trainer.
+setvar 0x4000 0x3
+goto @areweactive
+end
+
+'-----------
+' Tile Specific Variables End
+'-----------
+
+'-----------
+' Have we battled?
+'-----------
+
+#org @areweactive
+checkflag 0xTTT ' We check a specific flag reserved for this trainer.
+if 0x1 goto @free ' Release the player since we have already battled.
+goto @justnoticedyou ' Go to a function for the trainer.
+end
+
+#org @free
+end
+
+'-----------
+' Have we battled? End
+'-----------
+
+'-----------
+' Seeing Player
+'-----------
+
+
+#org @justnoticedyou ' This will lock the player like a regular trainer.
+lock
+applymovement 0xP @exclaim ' Exclaimation mark.
+waitmovement 0x0
+pause 0x8 ' A light pause while the train has an exclamation mark.
+goto @specificmovements ' We now move the Trainer to the Player.
+end
+
+'-----------
+' Seeing Player End
+'-----------
+
+
+'-----------
+' Movements Section End
+'-----------
+
+#org @specificmovements
+compare 0x4000 0x0
+if 0x1 goto @mainbattle ' We don't move on the tile next to the trainer, so we will go to the battle function.
+compare 0x4000 0x1
+if 0x1 call @movement2tile ' This is the 2nd tile from the trainer.
+compare 0x4000 0x2
+if 0x1 call @movement3tile ' This is the 3rd tile from the trainer.
+compare 0x4000 0x3
+if 0x1 call @movement4tile ' This is the furthest tiles movements.
+goto @mainbattle ' Go to the main battle function.
+end
+
+'---------
+' Movement Functions
+'---------
+
+#org @movement2tile
+applymovement 0xP @movementtile2
+waitmovement 0x0
+return
+
+#org @movement3tile
+applymovement 0xP @movementtile3
+waitmovement 0x0
+return
+
+#org @movement4tile
+applymovement 0xP @movementtile4
+waitmovement 0x0
+return
+
+'---------
+' Movement Functions End
+'---------
+
+
+'-----------
+' Movements
+'-----------
+
+#org @exclaim
+#raw 0x62 'Exclamation Mark (!)
+#raw 0xFE 'End of Movements
+
+#org @movementtile2
+#raw 0x12 'Step Left (Normal)
+#raw 0xFE 'End of Movements
+
+#org @movementtile3
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0xFE 'End of Movements
+
+#org @movementtile4
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0x12 'Step Left (Normal)
+#raw 0xFE 'End of Movements
+
+'-----------
+' Movements End
+'-----------
+
+'-----------
+' Movements Section End
+'-----------
+
+
+'-----------
+' Battle Section
+'-----------
+
+#org @mainbattle
+checkflag 0x230 ' Check our side.
+setflag 0xTTT
+textcolor 0xTXT ' Set's text color. 0 for Male - Blue. 1 for Female - Red. 2 for Neutral - Black.
+callasm 0xSHINYASM ' Calls Hackmews shiny ASM.
+setvar 0x8003 0xSHINYVALUE ' Pokemon to be shiny. Say its 0x905. The 05 would be 5 total trainer Pokemon. The 9 you would convert to binary by the number of pokemon. So, 9 here would be 01001. This says that pokemon 2 and 5 will be shiny. That's all.
+trainerbattle 0x0 0xTFX 0x0 @before @after
+end
+
+'-----------
+' Battle Section End
+'-----------
+
+'---------
+' Strings
+'---------
+
+#org @before
+= Lets battle.
+
+#org @after
+= I lost.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------
