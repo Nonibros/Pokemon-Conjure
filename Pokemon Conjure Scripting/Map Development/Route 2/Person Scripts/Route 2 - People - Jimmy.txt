@@ -1,0 +1,173 @@
+' This is for Jimmy, the old guy in the house on Route 2.
+' Script made by: Nonibros
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Main Function
+'---------
+#org @jimmymain ' This is our main function. Here we call the system and lock/release the player.
+lock
+faceplayer
+random 0x03 ' We will decide on either the neutral message system, or a gender specific system.
+compare 0x800D 0x0
+if 0x1 goto @malefemale ' Go to the male female message.
+goto @neutralcaller
+end
+
+#org @malefemale
+checkgender
+compare 0x800D 0x0 ' If male go to the male random message system.
+if 0x1 goto @malecaller
+compare 0x800D 0x1 ' If female go to the female random message system.
+if 0x1 goto @femalecaller
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Callers
+'---------
+
+#org @neutralcaller ' This calls the neutral random message system and then releases the player when finished.
+call @neutralrandom
+goto @ending
+end
+
+#org @malecaller ' This calls the male message and then goes to movement when finished.
+call @maleprep1
+goto @ending
+end
+
+#org @femalecaller ' This calls the female message and then goes to movement when finished.
+call @femaleprep1
+goto @ending
+end
+
+#org @ending ' Moves the NPC and releases the player when finished.
+applymovement 0xP @faceright
+waitmovement 0x0
+release
+end
+
+'---------
+' Callers End
+'---------
+
+'---------
+' Neutral Random Message System
+'---------
+
+#org @neutralrandom ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @neutralprep1
+compare 0x800D 0x1
+if 0x1 goto @neutralprep2
+goto @neutralprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Neutral Random Message System End
+'---------
+
+
+'---------
+' Neutral Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @neutralprep1
+msgbox @neutralmessage1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @neutralprep2
+msgbox @neutralmessage2 0x6
+return
+
+'---------
+' Neutral Messages End
+'---------
+
+'---------
+' Male Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @maleprep1
+msgbox @malemessage1 0x6
+return
+
+'---------
+' Male Messages End
+'---------
+
+'---------
+' Female Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @femaleprep1
+msgbox @femalemessage1 0x6
+return
+
+'---------
+' Female Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @neutralmessage1
+= You know, I'm either reading\nbooks or reading the newspaper.\pYou see, we got rid of our T.V. a\nlong time ago.
+
+#org @neutralmessage2
+= Oh, you're a Pok\h1Bmon trainer on\na journey?\pWell, good luck to you.
+
+#org @malemessage1
+= Hello there young man.\pI'm just reading the newspaper\nright now, so I'll get back to\lthat.
+
+#org @femalemessage1
+= Hello there young lady.\pI'm just reading the newspaper\nright now, so I'll get back to\lthat.
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Movements
+'---------
+
+#org @faceright
+#raw 0x3  ' Face Right
+#raw 0xFE ' End of Movements
+
+'---------
+' Movements End
+'---------
+
+
+'-----------
+' Script End
+'-----------
