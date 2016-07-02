@@ -74,7 +74,8 @@ It is used for the global newspaper script.
 Just says how the news is terrible, but this can be changed to a new pointer for extened new if we so wish.
 0x11FFEA0 is a special offset.
 It is used to display a message saying a door is locked.
-
+0x11FFE50 is a special offset.
+It is used for areas that are not complete, and says they are under construction.
 
 
 Flag blocks:
