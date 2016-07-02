@@ -1,0 +1,34 @@
+' This script is put on signs covering entrances that you can't enter yet due to the area not being finished.
+' Script made by: Nonibros
+'---------
+' Script Start
+'---------
+
+#dynamic 0xOFFSET
+
+'---------
+' Main Function
+'---------
+
+#org @thanksforplayingmain ' Main futon function.
+msgbox @thanksforplayingmessage 0x6 ' The futon message.
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @thanksforplayingmessage
+= Area is currently under\nconstruction.
+
+'---------
+' Strings End
+'---------
+
+'---------
+' Script End
+'---------
