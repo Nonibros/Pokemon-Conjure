@@ -1,0 +1,180 @@
+' This is for Retah (Earth), the bug catcher on the path on Route 2.
+' Script made by: Nonibros
+'-----------
+' Script Start
+'-----------
+
+'-----------
+' Battle Script Start
+'-----------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0x19 0x0 @battlegreeting @battlewin ' Regular trainer battle here.
+goto @messagesystemmain ' After battle, we will go to a message system. This points to the template "Gender system - For trainers".
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @battlegreeting
+= Hey punk:\nDON'T MAKE FUN OF MY NAME!
+
+#org @battlewin
+= What?\nYou didn't know my name?
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Battle Script End
+'-----------
+
+' Gender - Neutral message system for trainers.
+' This version is for trainers. You just add a pointer to @messagesystemmain after the battle, and just copy this entire script.
+' Copyright @2016 Nonibros.
+'-----------
+' Gender - Neutral Script Start
+'-----------
+
+'#dynamic 0x11FFFA0 ' No offset because this is an add on.
+
+'---------
+' Main Function
+'---------
+#org @messagesystemmain ' This is our main function. Here we call the system and lock/release the player.
+lock
+faceplayer
+random 0x02 ' We will decide on either the neutral message system, or a gender specific system.
+compare 0x800D 0x0
+if 0x1 goto @neutralcaller ' Go to the neutral function caller.
+checkgender
+compare 0x800D 0x0 ' If male go to the neutral system, since this character doesn't say anything specific for males.
+if 0x1 goto @neutralcaller
+compare 0x800D 0x1 ' If female go to the female random message system.
+if 0x1 goto @femalecaller
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Callers
+'---------
+
+#org @neutralcaller ' This calls the neutral random message system and then releases the player when finished.
+call @neutralrandom
+release
+end
+
+#org @femalecaller ' This calls a single female message.
+call @femaleprep1
+release
+end
+
+'---------
+' Callers End
+'---------
+
+'---------
+' Neutral Random Message System
+'---------
+
+#org @neutralrandom ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @neutralprep1
+compare 0x800D 0x1
+if 0x1 goto @neutralprep2
+goto @neutralprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Neutral Random Message System End
+'---------
+
+
+'---------
+' Neutral Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @neutralprep1
+msgbox @neutralmessage1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @neutralprep2
+msgbox @neutralmessage2 0x6
+return
+
+'---------
+' Neutral Messages End
+'---------
+
+'---------
+' Female Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @femaleprep1
+msgbox @femalemessage1 0x6
+return
+
+'---------
+' Female Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @neutralmessage1
+= I love to battle, but people make\nfun of me!\pIt's REALLY annoying!
+
+#org @neutralmessage2
+= You know, only one person doesn't\nmake fun of me and that's Sue,\lthe boy by the rest stop.
+
+#org @femalemessage1
+= You're very pretty!
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Gender - Neutral Script Start
+'-----------
+
+
+
+
+'-----------
+' Script End
+'-----------

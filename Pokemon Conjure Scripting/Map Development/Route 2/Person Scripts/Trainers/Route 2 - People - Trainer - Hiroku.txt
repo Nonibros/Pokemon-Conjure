@@ -1,0 +1,42 @@
+' This is for Hiroku, the scientist on Route 2.
+' Script made by: Nonibros
+'-----------
+' Script Start
+'-----------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0x1F 0x0 @battlegreeting @battlewin ' Regular trainer battle here.
+msgbox @message1 0x6 ' After battle, we will display a message.
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Strings
+'---------
+
+#org @battlegreeting
+= With my Pok\h1bmon, I will never\nlose.\pNot even in a million years.
+
+#org @battlewin
+= Impossible!
+
+#org @message1
+= I can force evolution on Pok\h1bmon,\nso I am suprised you could beat\lme...
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Script End
+'-----------

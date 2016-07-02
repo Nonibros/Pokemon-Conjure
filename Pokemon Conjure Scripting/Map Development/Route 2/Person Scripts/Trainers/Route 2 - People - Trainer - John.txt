@@ -1,0 +1,262 @@
+' This is for John, the hiker by the grass on Route 2.
+' Script made by: Nonibros
+'-----------
+' Script Start
+'-----------
+
+'-----------
+' Battle Script Start
+'-----------
+
+#dynamic 0x11FFFA0
+
+'---------
+' Main Function
+'---------
+
+#org @trainer ' Function for trainer.
+trainerbattle 0x0 0x1E 0x0 @battlegreeting @battlewin ' Regular trainer battle here.
+goto @messagesystemmain ' After battle, we will go to a message system. This points to the template "Gender system - For trainers".
+end
+
+'---------
+' Main Function End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @battlegreeting
+= Oh ho ho!
+
+#org @battlewin
+= Your peak is higher then a\nmountain!
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Battle Script End
+'-----------
+
+' Gender - Neutral message system for trainers.
+' This version is for trainers. You just add a pointer to @messagesystemmain after the battle, and just copy this entire script.
+' Copyright @2016 Nonibros.
+'-----------
+' Gender - Neutral Script Start
+'-----------
+
+'#dynamic 0x11FFFA0 ' No offset because this is an add on.
+
+'---------
+' Main Function
+'---------
+#org @messagesystemmain ' This is our main function. Here we call the system and lock/release the player.
+lock
+faceplayer
+random 0x02 ' We will decide on either the neutral message system, or a gender specific system.
+compare 0x800D 0x0
+if 0x1 goto @neutralcaller ' Go to the neutral function caller.
+checkgender
+compare 0x800D 0x0 ' If male go to the male random message system.
+if 0x1 goto @malecaller
+compare 0x800D 0x1 ' If female go to the female random message system.
+if 0x1 goto @femalecaller
+release
+end
+
+'---------
+' Main Function End
+'---------
+
+'---------
+' Callers
+'---------
+
+#org @neutralcaller ' This calls the neutral random message system and then releases the player when finished.
+call @neutralrandom
+release
+end
+
+#org @malecaller ' This calls the male random message system and then releases the player when finished.
+call @malerandom
+release
+end
+
+#org @femalecaller ' This calls the female random message system and then releases the player when finished.
+call @femalerandom
+release
+end
+
+'---------
+' Callers End
+'---------
+
+'---------
+' Neutral Random Message System
+'---------
+
+#org @neutralrandom ' We are picking a random number here for the neutral system. Whatever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @neutralprep1
+compare 0x800D 0x1
+if 0x1 goto @neutralprep2
+goto @neutralprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Neutral Random Message System End
+'---------
+
+
+'---------
+' Neutral Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @neutralprep1
+msgbox @neutralmessage1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @neutralprep2
+msgbox @neutralmessage2 0x6
+return
+
+'---------
+' Neutral Messages End
+'---------
+
+'---------
+' Male Random Message System
+'---------
+
+#org @malerandom ' We are picking a random number here for the male system. Whatever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @maleprep1
+compare 0x800D 0x1
+if 0x1 goto @maleprep2
+goto @maleprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Male Random Message System End
+'---------
+
+
+'---------
+' Male Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @maleprep1
+msgbox @malemessage1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @maleprep2
+msgbox @malemessage2 0x6
+return
+
+'---------
+' Male Messages End
+'---------
+
+'---------
+' Female Random Message System
+'---------
+
+#org @femalerandom ' We are picking a random number here for the female system. Whatever number is picked is the message to display.
+random 0x02
+compare 0x800D 0x0
+if 0x1 goto @femaleprep1
+compare 0x800D 0x1
+if 0x1 goto @femaleprep2
+goto @femaleprep2 ' If there is a glitch, this will auto go to the last message.
+end
+
+'---------
+' Female Random Message System End
+'---------
+
+
+'---------
+' Female Messages
+'---------
+
+'---------
+' Message 1
+'---------
+
+#org @femaleprep1
+msgbox @femalemessage1 0x6
+return
+
+'---------
+' Message 2
+'---------
+
+#org @femaleprep2
+msgbox @femalemessage2 0x6
+return
+
+'---------
+' Female Messages End
+'---------
+
+
+'---------
+' Strings
+'---------
+
+#org @neutralmessage1
+= I love hiking up mountains!
+
+#org @neutralmessage2
+= If you ever climb a mountain,\nyou'll know true tranquility.
+
+#org @malemessage1
+= Young man, climb even higher!
+
+#org @malemessage2
+= Ah man, I don't remember the last\ntime I had a home cooked meal...
+
+#org @femalemessage1
+= My wife is waiting home for me.\pShe's a strong lady, and I love\nher dearly.
+
+#org @femalemessage2
+= I wonder if I should settle down\nand stop climbing.
+
+'---------
+' Strings End
+'---------
+
+
+'-----------
+' Gender - Neutral Script Start
+'-----------
+
+
+
+
+'-----------
+' Script End
+'-----------
