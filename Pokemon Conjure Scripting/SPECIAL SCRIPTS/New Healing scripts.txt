@@ -1,5 +1,5 @@
 'This script is for regular Non-pokecenter healing after blacking out.
-'Currently just doing bed.
+'Currently have bed, and the camper in Route 2 rest stop.
 '-----------
 ' Script Start
 '-----------
@@ -25,12 +25,31 @@ end
 
 #org @nap
 lockall
+compare 0x500F 0x0
+if 0x1 goto @healplayerhouse ' We don't move on the tile next to the trainer, so we will go to the battle function.
+compare 0x500F 0x1
+if 0x1 goto @healroute2 ' This is the 2nd tile from the trainer.
+goto @healplayerhouse ' Autogo to the house incase something is up.
+
+#org @healplayerhouse
 textcolor 0x3
 applymovement 0xFF @facedown ' We face down towards the bed.
 waitmovement 0x0 ' Wait until movements are complete.
 msgbox @beforenap MSG_KEEPOPEN
 call @healing ' Call healing function
 msgbox @afternap MSG_KEEPOPEN
+fadedefault
+releaseall
+end
+
+#org @healroute2
+lockall
+textcolor 0x0
+applymovement 0xFF @faceup ' We face up towards the camper.
+waitmovement 0x0 ' Wait until movements are complete.
+msgbox @beforehealroute2 MSG_KEEPOPEN
+call @healing ' Call healing function
+msgbox @afterhealroute2 MSG_KEEPOPEN
 fadedefault
 releaseall
 end
@@ -66,6 +85,12 @@ return
 #org @afternap
 = That was a fantastic rest!\pBoth you and your Pok\h1Bmon are\nmuch better from that nap!\pWell, It's time to go now!
 
+#org @beforehealroute2
+= Hey, kid, kid, are you ok?\nJust rest a bit, I'll help you.
+
+#org @afterhealroute2
+= Alright kiddo, you seem to be all\nbetter.\pI used to work as a doctor, but\nnow I manage the public areas.\pFarewell and be careful!
+
 '---------
 ' Strings End
 '---------
@@ -76,6 +101,10 @@ return
 
 #org @facedown
 #raw 0x0  ' Face Down
+#raw 0xFE ' End of Movements
+
+#org @faceup
+#raw 0x1  ' Face Up
 #raw 0xFE ' End of Movements
 
 '---------
