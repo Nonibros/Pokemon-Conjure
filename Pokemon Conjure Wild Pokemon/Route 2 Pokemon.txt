@@ -1,0 +1,15 @@
+Route 2 Pokemon
+1:  Starly - 20% - Level 7 - 10
+2:  Poochyena - 20% - Level 7 - 10
+3:  Petilil - 10% - Level 7 - 10
+4:  Wingull - 10% - Level 8 - 10
+5:  Wurmple - 10% - Level 6 - 8
+6:  Ledyba  - 10% - Level 6 - 8
+7:  Scatterbug  - 5% - Level 6 - 7
+8:  Fletchling - 5% - Level 9 - 10
+9:  Tympole - 4% - Level 9 - 10
+10: Lillipup  - 4% - Level 8 - 10
+11: Dedenne - 1% - Level 10 - 10
+12: Zorua  - 1% - Level 10 - 10
+
+Chance - 21

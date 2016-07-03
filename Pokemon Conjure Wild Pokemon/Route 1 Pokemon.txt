@@ -1,0 +1,15 @@
+Route 1 Pokemon
+1:  Rattata - 20% - Level 3 - 5
+2:  Pidgey - 20% - Level 3 - 5
+3:  Sentret - 10% - Level 3 - 5
+4:  Spearow - 10% - Level 3 - 5
+5:  Hoothoot - 10% - Level 3 - 5
+6:  Doduo - 10% - Level 4 - 5
+7:  Pikachu  - 5% - Level 2 - 5
+8:  Mareep - 5% - Level 3 - 5
+9:  Meowth - 4% - Level 4 - 5
+10: Machop  - 4% - Level 3 - 4
+11: Growlithe - 1% - Level 6 - 6
+12: Vulpix - 1% - Level 6 - 6
+
+Chance - 20
