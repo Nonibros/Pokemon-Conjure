@@ -4,7 +4,7 @@
 ' Script End
 '---------
 
-#dynamic 0xOFFSET
+#dynamic 0x11FFFA0
 
 '---------
 ' Main Function

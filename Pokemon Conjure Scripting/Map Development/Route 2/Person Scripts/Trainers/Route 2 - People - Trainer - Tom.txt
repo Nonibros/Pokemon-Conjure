@@ -15,7 +15,7 @@
 '---------
 
 #org @trainer ' Function for trainer.
-trainerbattle 0x0 0x1D 0x0 @battlegreeting @battlewin ' Regular trainer battle here.
+trainerbattle 0x0 0x60 0x0 @battlegreeting @battlewin ' Regular trainer battle here.
 goto @messagesystemmain ' After battle, we will go to a message system. This points to the template "Gender system - For trainers".
 end
 
@@ -264,7 +264,7 @@ return
 
 
 '-----------
-' Gender - Neutral Script Start
+' Gender - Neutral Script End
 '-----------
 
 

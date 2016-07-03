@@ -237,7 +237,7 @@ return
 = Go get 'em, handsome!
 
 #org @malemessage2
-= You're stronger then all the\nother boy trainers around here.\pThey are really weak.
+= You're stronger then all the\nother boy trainers around here.\pThey are all really weak.
 
 #org @femalemessage1
 = Wow, you're strong and beautiful!
@@ -251,7 +251,7 @@ return
 
 
 '-----------
-' Gender - Neutral Script Start
+' Gender - Neutral Script End
 '-----------
 
 

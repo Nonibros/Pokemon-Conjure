@@ -47,10 +47,14 @@ end
 textcolor 0x0 ' Blue text because you are talking.
 applymovement 0xFF @faceup ' We face up towards the camper.
 waitmovement 0x0 ' Wait until movements are complete.
+applymovement 0x5 @facedown ' We face the camper down towards the player.
+waitmovement 0x0 ' Wait until movements are complete.
 msgbox @beforehealroute2 MSG_KEEPOPEN ' Message before healing.
 call @healing ' Call healing function
 msgbox @afterhealroute2 MSG_KEEPOPEN ' Message after healing.
 fadedefault ' Fade out after fainting.
+applymovement 0x5 @faceleft ' We face the camper left, his normal position.
+waitmovement 0x0 ' Wait until movements are complete.
 releaseall ' Release the player so they can walk and stuff.
 end
 
@@ -105,6 +109,10 @@ return
 
 #org @faceup
 #raw 0x1  ' Face Up
+#raw 0xFE ' End of Movements
+
+#org @faceleft
+#raw 0x2  ' Face Left
 #raw 0xFE ' End of Movements
 
 '---------

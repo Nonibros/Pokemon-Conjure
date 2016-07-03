@@ -56,7 +56,7 @@ end
 
 #org @justnoticedyou ' This will lock the player like a regular trainer.
 lock
-applymovement 0x1 @exclaim ' Exclaimation mark.
+applymovement 0x6 @exclaim ' Exclaimation mark.
 waitmovement 0x0
 pause 0x8 ' A light pause while the train has an exclamation mark.
 goto @specificmovements ' We now move the Trainer to the Player.
@@ -86,12 +86,12 @@ end
 '---------
 
 #org @movement2tile
-applymovement 0x1 @movementtile2
+applymovement 0x6 @movementtile2
 waitmovement 0x0
 return
 
 #org @movement3tile
-applymovement 0x1 @movementtile3
+applymovement 0x6 @movementtile3
 waitmovement 0x0
 return
 
