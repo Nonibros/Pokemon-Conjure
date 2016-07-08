@@ -22,7 +22,7 @@ end
 #org @healingroute2 ' This function is to get the area for the rest stop on Route 2, should we faint.
 setvar 0x500F 0x1 ' Sets our variable to the rest stop in Route 2, incase we should faint.
 sethealingplace 0x1 ' Sets the type of healing to regular, non PC.
-setvar 0x405a 0x0F02 ' 0F = map /  02 = bank
+setvar 0x405a 0x020F ' 02 = map /  0F = bank
 setvar 0x405b 0x000D ' 0D = x coordinate of player
 setvar 0x405c 0x0009 ' 09 = y coordinate of player
 end

@@ -22,7 +22,7 @@ end
 '---------
 
 #org @house1signmessage
-= I love Johto!\nCome on in!
+= Come on in!\nI love Johto!
 
 '---------
 ' Strings End

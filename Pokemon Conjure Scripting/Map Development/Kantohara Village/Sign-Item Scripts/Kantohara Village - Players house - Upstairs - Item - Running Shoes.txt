@@ -32,7 +32,7 @@ end
 '---------
 
 #org @obtainedshoes
-= Obtained the Running shoes!\nYou put these awesome shoes on.\pThere is a note attached:\nHold B while walking to run.
+= Obtained the Running shoes!\pYou put these awesome shoes on.\pThere is a note attached:\nHold B while walking to run.
 
 '---------
 ' Strings End

@@ -18,6 +18,7 @@ call @resetvar ' Reset the variable to 0.
 end ' Simply end the script, since we are talking to the rug.
 
 #org @ending ' This ends the script.
+msgbox @whyareyoutalking 0x6 ' We make fun of the player after they complete the game and talk to the rug.
 end
 
 #org @finalflagset ' Here we set our final flag. When we come back to the script that called this, if this flag is set to true, we should run a custom script.
@@ -28,6 +29,7 @@ end
 
 #org @resetvar
 setvar 0x5100 0x0 ' Reset stored variable to 0, return to the script.
+msgbox @isntthetime 0x6 ' We let the player know that the shouldn't be talking to the rug yet.
 return
 
 '---------
@@ -90,6 +92,12 @@ end
 
 #org @lookforward
 = I look forward to seeing how you\ndo on your journey, [player]!\pBye for now.
+
+#org @whyareyoutalking
+= ...\nWhy are you talking to a rug???
+
+#org @isntthetime
+= This isn't the time to talk to\nthe rug.
 
 '---------
 ' Strings End

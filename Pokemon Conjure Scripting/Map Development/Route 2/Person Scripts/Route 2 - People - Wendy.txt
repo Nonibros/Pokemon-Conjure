@@ -140,7 +140,7 @@ return
 '---------
 
 #org @neutralmessage1
-= My husband works hard, so I make sure to make good meals for him.
+= My husband works hard, so I make\nsure to make good meals for him.
 
 #org @neutralmessage2
 = It's hard work cooking but my\nhusband loves my food so it's\lworth it everytime.
